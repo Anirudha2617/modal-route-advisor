@@ -28,18 +28,23 @@ const Header = () => {
             <Link to="/">
               <Button variant={isActive("/") ? "default" : "ghost"} className="h-9 px-3">
                 <Database className="mr-2 h-4 w-4" />
-                Dashboard
+                Home
+              </Button>
+            </Link>
+            <Link to="/paper">
+              <Button variant={isActive("/paper") ? "default" : "ghost"} className="h-9 px-3">
+                Research Paper
               </Button>
             </Link>
             <Link to="/results">
               <Button variant={isActive("/results") ? "default" : "ghost"} className="h-9 px-3">
                 <BarChart3 className="mr-2 h-4 w-4" />
-                Results
+                Results & Analysis
               </Button>
             </Link>
             <Link to="/leaderboard">
               <Button variant={isActive("/leaderboard") ? "default" : "ghost"} className="h-9 px-3">
-                Leaderboard
+                Benchmarks
               </Button>
             </Link>
           </nav>
@@ -60,7 +65,7 @@ const Header = () => {
           
           <Link to="/new">
             <Button className="bg-gradient-primary hover:shadow-primary">
-              New Experiment
+              Try It Yourself
             </Button>
           </Link>
         </div>

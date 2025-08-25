@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
+import ResearchPaper from "./components/ResearchPaper";
 import NewExperiment from "./components/NewExperiment";
 import Results from "./components/Results";
 import Leaderboard from "./components/Leaderboard";
@@ -23,6 +24,7 @@ const App = () => (
           <main className="container py-6">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/paper" element={<ResearchPaper />} />
               <Route path="/new" element={<NewExperiment />} />
               <Route path="/results" element={<Results />} />
               <Route path="/leaderboard" element={<Leaderboard />} />

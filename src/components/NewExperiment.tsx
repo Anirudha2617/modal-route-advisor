@@ -55,12 +55,23 @@ const NewExperiment = () => {
   return (
     <div className="space-y-6">
       {/* Progress Header */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">New Experiment</h1>
-          <Badge variant="outline">Step {activeStep} of 4</Badge>
+      <div className="text-center space-y-4">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent">
+          Try It Yourself
+        </h1>
+        <p className="text-muted-foreground text-lg">
+          Reproduce our research findings by uploading your own content and comparing costs
+        </p>
+        <div className="bg-gradient-to-r from-tech-blue/10 to-tech-purple/10 p-4 rounded-lg border border-tech-blue/20">
+          <p className="text-sm text-muted-foreground">
+            📄 Upload documents, images, or audio → 🔄 Auto-generate modality variants → 
+            📊 See real-time cost/quality analysis → 📈 Export results for citation
+          </p>
         </div>
-        <Progress value={(activeStep / 4) * 100} className="w-full" />
+        <div className="space-y-2">
+          <Badge variant="outline">Step {activeStep} of 4</Badge>
+          <Progress value={(activeStep / 4) * 100} className="w-full max-w-md mx-auto" />
+        </div>
       </div>
 
       {/* Step 1: Upload Content */}
