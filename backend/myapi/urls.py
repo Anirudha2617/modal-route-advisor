@@ -9,4 +9,5 @@ urlpatterns = [
     path('experiments/<int:pk>/', views.ExperimentViewSet.as_view({'get': 'retrieve'}), name='experiment-detail'),
     path('results/', views.ExperimentResultViewSet.as_view({'get': 'list'}), name='result-list'),
     path('results/<int:pk>/', views.ExperimentResultViewSet.as_view({'get': 'retrieve'}), name='result-detail'),
+    path('trending-models/', views.get_trending_data, name='trending-models'),
 ]

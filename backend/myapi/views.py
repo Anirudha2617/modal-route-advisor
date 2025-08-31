@@ -11,6 +11,7 @@ from .serializers import (
     AIModelSerializer,
     ExperimentSerializer,
     ExperimentResultSerializer,
+    ModelTrendingDataSerializer,
 )
 from .test_functions import (
     calculate_performance_metrics,
@@ -18,70 +19,6 @@ from .test_functions import (
 
 
 
-
-# --- API View ---
-
-
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .models import AIModel, Experiment, ExperimentResult
-import time
-import random
-
-# src/myapi/views.py
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .models import AIModel, Experiment, ExperimentResult
-import time
-import random
-
-# Mock functions (keep these as they are, they are not the source of the issue)
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .models import AIModel, Experiment, ExperimentResult
-import time
-import random
-
-# Mock functions to simulate a real-world scenario
-def calculate_performance_metrics(model, input_data, modality, task):
-    # This is a placeholder for your actual logic to call an AI model
-    start_time = time.time()
-    time.sleep(random.uniform(2.0, 5.0))
-    end_time = time.time()
-    
-    time_taken = end_time - start_time
-    
-    tokens_used = 0
-    if modality == 'text' and input_data:
-        tokens_used = len(str(input_data).split()) * 1.33
-    elif modality == 'image' and input_data:
-        tokens_used = random.randint(150, 200)
-    elif modality == 'audio' and input_data:
-        tokens_used = random.randint(25000, 30000)
-    elif modality == 'video' and input_data:
-        tokens_used = random.randint(2200, 2600)
-    elif modality == 'doc' and input_data:
-        tokens_used = random.randint(1200, 1400)
-    
-    tokens_used = max(1, int(tokens_used))
-    
-    cost_per_token_attribute = f'cost_per_token_{modality}'
-    cost_per_token = getattr(model, cost_per_token_attribute, None)
-    
-    cost = 0.0
-    if cost_per_token is not None:
-        cost = float(cost_per_token) * tokens_used
-    
-    accuracy_score = random.uniform(90.0, 95.0)
-    performance_score = (accuracy_score / 100) / (cost * time_taken + 1e-6)
-
-    return {
-        'time_taken': time_taken,
-        'cost': cost,
-        'tokens_used': tokens_used,
-        'accuracy': accuracy_score,
-        'performance_score': performance_score
-    }
 
 ## The main view function to be fixed
 @api_view(['POST'])
@@ -117,15 +54,17 @@ def run_experiment_backend(request):
 
     response_data = []
 
+    new_experiment = Experiment.create_from_request(
+        modalities = selected_tasks,
+        all_data = all_data,
+        task_prompt=f" Questions: {','.join(qa_questions)}" if qa_questions else " General analysis"
+    )
     # Loop through each selected task to create a separate result entry
     for task_id in selected_tasks:
         print(f"\n--- Processing for task: {task_id} ---")
         
         # Create a new Experiment object for this task
-        new_experiment = Experiment.objects.create(
-            source_content_type='multimodal',
-            task_prompt=f"Task: {task_id}, Questions: {','.join(qa_questions)}" if task_id == 'qa' else f"Task: {task_id}"
-        )
+
 
         task_results = []
         for model_id in selected_model_ids:
@@ -141,7 +80,16 @@ def run_experiment_backend(request):
                 print(f"Checking modality: {modality}...")
                 if input_data and modality in model.supported_modalities['types']:
                     metrics = calculate_performance_metrics(model, input_data, modality, task_id)
-                    
+                    Experimentresult = ExperimentResult.objects.create(
+                        experiment=new_experiment,
+                        model=model,
+                        modality=modality,
+                        tokens_used=metrics['tokens_used'],
+                        time_taken_seconds=metrics['time_taken'],
+                        cost_usd=metrics['cost'],
+                        accuracy_score=metrics['accuracy'],
+                        response_text=metrics['response_text'],
+                    )
                     modalities_data.append({
                         'modality': modality,
                         'tokens_used': metrics['tokens_used'],
@@ -168,6 +116,8 @@ def run_experiment_backend(request):
     print("\nExperiment and results saved.")
     
     return Response(response_data)
+
+
 class AIProviderViewSet(viewsets.ReadOnlyModelViewSet):
     """
     A viewset for listing and retrieving AI providers.
@@ -195,3 +145,18 @@ class ExperimentResultViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = ExperimentResult.objects.all()
     serializer_class = ExperimentResultSerializer
+
+
+
+
+@api_view(['GET'])
+def get_trending_data(request):
+    results = ExperimentResult.objects.all().select_related('model').order_by('-accuracy_score')
+    ranked_results = []
+    for index, result in enumerate(results):
+        result.rank = index + 1
+        ranked_results.append(result)
+
+    # Serialize the ranked data.
+    serializer = ModelTrendingDataSerializer(ranked_results, many=True)
+    return Response(serializer.data)

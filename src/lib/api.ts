@@ -51,6 +51,37 @@ export interface ExperimentResultItem {
   modalities: ModalityResult[];
 }
 
+export  interface Model {
+  id: number;
+  name: string;
+  provider: number;
+}
+
+export interface Result {
+  id: number;
+  modality: string;
+  tokens_used: number;
+  time_taken_seconds: string;
+  cost_usd: string;
+  accuracy_score: string;
+  response_text: string;
+  experiment: number;
+  model: Model;
+}
+
+/**
+ * Interface for a single experiment.
+ */
+export interface Experiment {
+  id: number;
+  results: Result[];
+  timestamp: string;
+  modalities: string[];
+  source_content_url: string | null;
+  data_types: string[];
+  task_prompt: string;
+}
+
 export type ExperimentResults = ExperimentResultItem[];
 
 const API_BASE_URL = "http://127.0.0.1:8000/api";
@@ -130,3 +161,59 @@ export const runExperiment = async (payload: ExperimentPayload): Promise<Experim
     throw error;
   }
 };
+
+/**
+ * A type representing an array of Experiment objects.
+ */
+export type AllExperiments = Experiment[];
+
+export const allExperiments = {
+  /**
+   * Fetches all experiments from the API.
+   * @returns A promise that resolves to an array of Experiment objects, or null if an error occurs.
+   */
+  getExperiments: async (): Promise<AllExperiments | null> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/experiments/`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data: AllExperiments = await response.json();
+      console.log("Fetched experiment results:", data);
+      return data; // Correctly return the fetched data
+    } catch (error) {
+      console.error("Error fetching experiment results:", error);
+      return null;
+    }
+  },
+};
+
+export interface Trending {
+      rank: number,
+      provider: string,
+      company: string,
+      avgCost: number,
+      avgLatency: number,
+      qualityScore: number,
+      costEfficiency: number,
+      trend: "up" | "down" | "stable",
+}
+
+export type LeaderboardItem = Trending[];
+
+export const leaderboardData ={
+  getLeaderboard: async (): Promise<LeaderboardItem | null> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/trending-models/`); 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data: LeaderboardItem = await response.json();
+      console.log("Fetched leaderboard data:", data);
+      return data; // Correctly return the fetched data
+    } catch (error) {
+      console.error("Error fetching leaderboard data:", error);
+      return null;
+    }
+  },
+}

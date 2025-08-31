@@ -35,6 +35,8 @@ import {
 } from "@/lib/api";
 import ExperimentResultsTable from "@/components/ExperimentResultsTable";
 
+
+
 // Define initial state for data and context
 interface ExperimentDataState {
   data: UserData;
@@ -57,6 +59,8 @@ const initialExperimentData: ExperimentDataState = {
   },
   models: [],
 };
+
+
 
 const NewExperiment = () => {
   const [activeStep, setActiveStep] = useState(1);
@@ -201,7 +205,7 @@ const NewExperiment = () => {
           <Badge variant="outline">Step {activeStep} of 5</Badge>
           <Progress value={(activeStep / 5) * 100} className="w-full max-w-md mx-auto" />
         </div>
-      </div>
+      </div>      
 
       {/* Step 1: Upload Content */}
       {activeStep === 1 && (
