@@ -9,6 +9,7 @@ import ResearchPaper from "./components/ResearchPaper";
 import NewExperiment from "./components/NewExperiment";
 import Results from "./components/Results";
 import Leaderboard from "./components/Leaderboard";
+import ModelComparison from "./components/ModelComparison";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
               <Route path="/" element={<Dashboard />} />
               <Route path="/paper" element={<ResearchPaper />} />
               <Route path="/new" element={<NewExperiment />} />
+              <Route path="/comparison" element={<ModelComparison />} />
               <Route path="/results" element={<Results />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

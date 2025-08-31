@@ -36,6 +36,11 @@ const Header = () => {
                 Research Paper
               </Button>
             </Link>
+            <Link to="/comparison">
+              <Button variant={isActive("/comparison") ? "default" : "ghost"} className="h-9 px-3">
+                Model Comparison
+              </Button>
+            </Link>
             <Link to="/results">
               <Button variant={isActive("/results") ? "default" : "ghost"} className="h-9 px-3">
                 <BarChart3 className="mr-2 h-4 w-4" />
