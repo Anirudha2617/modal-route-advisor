@@ -68,7 +68,7 @@ const Dashboard = () => {
               cost-effective AI processing routes.
             </p>
             <div className="flex gap-4">
-              <Button size="lg" className="bg-white text-tech-blue hover:bg-white/90" asChild>
+              <Button size="lg" className="bg-primary text-tech-blue hover:bg-primary/90" asChild>
                 <Link to="/new">
                   Try It Yourself
                 </Link>
