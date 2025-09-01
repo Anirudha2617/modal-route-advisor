@@ -1,119 +1,180 @@
 import time
 import random
 from decimal import Decimal
+from .models import ExperimentResult, AIProvider
+import openai
+import anthropic
+import google.generativeai as genai
 
-def measure_time_taken(api_call_function):
+
+def get_provider_client(model_object):
     """
-    Measures the time taken for an API call function to execute.
-    
-    Args:
-        api_call_function: A function that simulates an API call.
-        
-    Returns:
-        A tuple containing the result of the function and the time taken in seconds.
+    Returns the correct API client based on the model's provider.
     """
-    start_time = time.time()
-    result = api_call_function()
-    end_time = time.time()
-    return result, end_time - start_time
+    provider = model_object.provider.name
+    api_key = model_object.provider.api_key
+
+    if provider == "openai":
+        openai.api_key = api_key
+        return openai
+    elif provider == "anthropic":
+        return anthropic.Anthropic(api_key=api_key)
+    elif provider == "google":
+        genai.configure(api_key=api_key)
+        return genai
+    elif provider == "perplexity":
+        # Example: Use requests to call Perplexity API
+        import requests
+        return requests
+    elif provider == "xai":
+        # Placeholder for xAI client
+        return None
+    else:
+        raise ValueError(f"Unsupported provider: {provider}")
+
+
+import time
+from google.api_core.exceptions import ResourceExhausted
+def run_model_api(model_object, modality, task, input_data):
+    """
+    Calls the real API based on provider + model.
+    Handles quota limits & retries gracefully.
+    """
+    provider = model_object.provider.name.lower()
+    client = get_provider_client(model_object)
+
+    if provider == "openai":
+        response = client.ChatCompletion.create(
+            model=model_object.name,
+            messages=[
+                {"role": "system", "content": f"You are solving task: {task}"},
+                {"role": "user", "content": input_data},
+            ],
+        )
+        return response.choices[0].message["content"], {
+            "input_tokens": response.usage.prompt_tokens,
+            "output_tokens": response.usage.completion_tokens,
+            "total_tokens": response.usage.total_tokens,
+        }
+
+    elif provider == "anthropic":
+        response = client.messages.create(
+            model=model_object.name,
+            max_tokens=500,
+            messages=[{"role": "user", "content": input_data}],
+        )
+        return response.content[0].text, {
+            "input_tokens": response.usage.input_tokens,
+            "output_tokens": response.usage.output_tokens,
+            "total_tokens": response.usage.input_tokens + response.usage.output_tokens,
+        }
+
+    elif provider == "google":
+        model = client.GenerativeModel(model_object.name)
+
+        retries = 3
+        delay = 30  # Google suggests ~30s wait for 429
+        for attempt in range(retries):
+            try:
+                response = model.generate_content(input_data)
+
+                usage_meta = getattr(response, "usage_metadata", None)
+                input_tokens = getattr(usage_meta, "prompt_token_count", 0)
+                output_tokens = getattr(usage_meta, "candidates_token_count", 0)
+                total_tokens = getattr(usage_meta, "total_token_count", input_tokens + output_tokens)
+
+                return response.text, {
+                    "input_tokens": input_tokens,
+                    "output_tokens": output_tokens,
+                    "total_tokens": total_tokens,
+                }
+
+            except Exception as e:
+                if "ResourceExhausted" in str(e) and attempt < retries - 1:
+                    print(f"[Google Gemini] Quota exceeded. Retrying in {delay}s (attempt {attempt+1})...")
+                    time.sleep(delay)
+                    delay *= 2  # exponential backoff
+                else:
+                    return f"Google API error: {e}", {
+                        "input_tokens": 0,
+                        "output_tokens": 0,
+                        "total_tokens": 0,
+                    }
+
+    elif provider == "perplexity":
+        headers = {"Authorization": f"Bearer {model_object.provider.api_key}"}
+        data = {"model": model_object.name, "messages": [{"role": "user", "content": input_data}]}
+        response = client.post("https://api.perplexity.ai/chat/completions", json=data, headers=headers)
+        resp_json = response.json()
+        return resp_json["choices"][0]["message"]["content"], None
+
+    elif provider == "xai":
+        return "xAI integration not implemented yet.", None
+
+    return "Unsupported provider output", None
+
+
 
 def calculate_cost(tokens_used, cost_per_token):
     """
-    Calculates the total cost based on tokens and rate.
-    
-    Args:
-        tokens_used (int): The number of tokens used.
-        cost_per_token (Decimal): The cost per token.
-        
-    Returns:
-        Decimal: The total cost.
+    Calculates cost.
     """
-    if cost_per_token is None:
-        return Decimal('0.0')
-    return Decimal(str(tokens_used)) * Decimal(str(cost_per_token))
+    if not tokens_used or not cost_per_token:
+        return Decimal("0.0")
+    return Decimal(tokens_used) * Decimal(cost_per_token)
 
-def calculate_tokens_used(input_data):
-    """
-    Simulates token counting for input data.
-    
-    Args:
-        input_data: The input content (text, file object, etc.).
-        
-    Returns:
-        int: A simulated number of tokens.
-    """
-    # Simple word count for text, or mock values for files
-    if isinstance(input_data, str):
-        word_count = len(input_data.split())
-        return int(word_count * 1.33)
-    # For file-based inputs, use a random mock value
-    else:
-        return random.randint(100, 2000)
 
-def calculate_accuracy(model_output, ground_truth, method='f1'):
+def calculate_accuracy(model_output, ground_truth, method="f1"):
     """
-    This function is a mock implementation for demonstration.
-    
-    Args:
-        model_output (str): The mock output from the model.
-        ground_truth (str): The mock ground truth.
-        method (str): The evaluation method ('f1', 'rouge_l', etc.).
-        
-    Returns:
-        float: A simulated accuracy score.
+    Placeholder accuracy (later plug in eval libs).
     """
-    if method == 'f1':
+    if method == "f1":
         return random.uniform(90.0, 95.0)
-    elif method == 'rouge_l':
-        return random.uniform(0.80, 0.90) * 100
+    elif method == "rouge_l":
+        return random.uniform(80.0, 90.0)
     return random.uniform(85.0, 99.0)
 
-def calculate_performance_metrics(model_object, input_data, modality, task):
+
+def calculate_performance_metrics(experiment, model_object, input_data, modality, task):
     """
-    Calculates and returns a dictionary of performance metrics for a given model and input data.
-    
-    Args:
-        model_object: The AIModel object containing cost data.
-        input_data: The content to be processed (e.g., text, image data).
-        modality: The modality of the input data ('text', 'image', etc.).
-        task: The task ID ('qa', 'summarization', etc.).
-        
-    Returns:
-        A dictionary containing time_taken, cost, tokens_used, accuracy, and a performance score.
+    Runs real API call, measures time, tokens, cost, saves ExperimentResult.
     """
-    print(f"--- Calculating metrics for {model_object.name} with {modality} data for task '{task}' ---")
+    print(f"--- Running {model_object.name} ({model_object.provider}) with modality={modality}, task={task} ---")
 
-    # 1. Define a single mock API call function
-    def get_mock_output():
-        time.sleep(random.uniform(2.0, 5.0))
-        return "Mock model output from the AI model."
+    # 1. Run model + measure time
+    start = time.time()
+    model_output, usage = run_model_api(model_object, modality, task, input_data)
+    end = time.time()
+    time_taken = end - start
 
-    # 2. Measure time taken and get the output in one go.
-    model_output, time_taken = measure_time_taken(get_mock_output)
+    # 2. Tokens
+    tokens_used = 0
+    if usage:
+        if "total_tokens" in usage:
+            tokens_used = usage["total_tokens"]
+        elif "input_tokens" in usage and "output_tokens" in usage:
+            tokens_used = usage["input_tokens"] + usage["output_tokens"]
 
-    # 3. Calculate tokens used from the model's output
-    tokens_used = calculate_tokens_used(input_data)
-
-    # 4. Get the cost per token for the specific modality from the model object
-    cost_per_token_attribute = f'cost_per_token_{modality}'
-    cost_per_token = getattr(model_object, cost_per_token_attribute, None)
+    # 3. Cost
+    cost_per_token_field = f"cost_per_token_{modality}"
+    cost_per_token = getattr(model_object, cost_per_token_field, None)
     cost = calculate_cost(tokens_used, cost_per_token)
 
-    # 5. Calculate accuracy
+    # 4. Accuracy (placeholder)
     ground_truth = "Mock ground truth"
-    accuracy = calculate_accuracy(model_output, ground_truth, method='f1') if task == 'qa' else calculate_accuracy(model_output, ground_truth, method='rouge_l')
+    accuracy = (
+        calculate_accuracy(model_output, ground_truth, "f1")
+        if task == "qa"
+        else calculate_accuracy(model_output, ground_truth, "rouge_l")
+    )
 
-    # 6. Calculate the composite performance score
-    performance_score = 0.0
-    if cost > 0 and time_taken > 0:
-        performance_score = (accuracy / 100) / (float(cost) * time_taken)
-
-    # 7. Return the results as a dictionary
-    return {
-        'time_taken': time_taken,
-        'cost': cost,
-        'tokens_used': tokens_used,
-        'accuracy': accuracy,
-        'performance_score': performance_score,
-        'response_text': "Mock model output from the AI model."
+    result = {
+        "tokens_used": tokens_used,
+        "time_taken": time_taken,
+        "cost": cost,
+        "accuracy": accuracy,
+        "response_text": model_output,
+        "performance_score": (accuracy / (float(cost) + 0.01)) * (1 / (time_taken + 0.01)),
     }
+
+    return result

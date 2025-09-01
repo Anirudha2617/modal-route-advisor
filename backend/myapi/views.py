@@ -26,25 +26,22 @@ def run_experiment_backend(request):
     print("\n--- NEW REQUEST RECEIVED ---")
     print("request.POST:", request.POST)
     print("request.FILES:", request.FILES)
-    
-    # FIX: Use a more robust method to retrieve list data from the QueryDict.
-    # The keys have an index attached (e.g., 'tasks[0]', 'tasks[1]'), so getlist()
-    # won't work on the top-level key. We iterate and build the lists ourselves.
-    selected_model_ids = [v for k, v in request.POST.items() if k.startswith('model_ids')]
-    selected_tasks = [v for k, v in request.POST.items() if k.startswith('tasks')]
-    qa_questions = [v for k, v in request.POST.items() if k.startswith('qa_questions')]
-    
+
+    selected_model_ids = request.POST.getlist('model_ids[]')
+    selected_tasks = request.POST.getlist('tasks[]')
+    qa_questions = request.POST.getlist('qa_questions[]')
+
     print("Selected model IDs:", selected_model_ids)
     print("Selected tasks:", selected_tasks)
     print("QA questions:", qa_questions)
-    
-    # Combine POST and FILES data into a single dictionary
+
+    # Merge POST + FILES
     all_data = {
-        'text': request.POST.get('text_content', ''),
-        'image': request.FILES.get('image_file', None),
-        'audio': request.FILES.get('audio_file', None),
-        'video': request.FILES.get('video_file', None),
-        'doc': request.FILES.get('document_file', None),
+        "text": request.POST.get("text_content", ""),
+        "image": request.FILES.get("image_file"),
+        "audio": request.FILES.get("audio_file"),
+        "video": request.FILES.get("video_file"),
+        "doc": request.FILES.get("document_file"),
     }
 
     # Check if any content was provided
@@ -78,8 +75,8 @@ def run_experiment_backend(request):
             modalities_data = []
             for modality, input_data in all_data.items():
                 print(f"Checking modality: {modality}...")
-                if input_data and modality in model.supported_modalities['types']:
-                    metrics = calculate_performance_metrics(model, input_data, modality, task_id)
+                if input_data and modality in model.supported_modalities:
+                    metrics = calculate_performance_metrics(new_experiment, model, input_data, modality, task_id )
                     Experimentresult = ExperimentResult.objects.create(
                         experiment=new_experiment,
                         model=model,
