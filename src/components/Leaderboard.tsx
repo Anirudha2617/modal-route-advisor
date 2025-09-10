@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,60 +21,22 @@ import {
   Target,
   Calendar
 } from "lucide-react";
+import { LeaderboardItem , leaderboardData } from "@/lib/api";
 
 const Leaderboard = () => {
-  const leaderboardData = [
-    {
-      rank: 1,
-      provider: "GPT-4o-mini",
-      company: "OpenAI",
-      avgCost: 0.42,
-      avgLatency: 1.1,
-      qualityScore: 0.89,
-      costEfficiency: 2.12,
-      trend: "up"
-    },
-    {
-      rank: 2,
-      provider: "Claude-3-Haiku",
-      company: "Anthropic",
-      avgCost: 0.38,
-      avgLatency: 1.4,
-      qualityScore: 0.87,
-      costEfficiency: 2.29,
-      trend: "up"
-    },
-    {
-      rank: 3,
-      provider: "Gemini-1.5-Flash",
-      company: "Google",
-      avgCost: 0.52,
-      avgLatency: 1.8,
-      qualityScore: 0.91,
-      costEfficiency: 1.75,
-      trend: "down"
-    },
-    {
-      rank: 4,
-      provider: "Claude-3.5-Sonnet",
-      company: "Anthropic",
-      avgCost: 1.23,
-      avgLatency: 2.1,
-      qualityScore: 0.94,
-      costEfficiency: 0.76,
-      trend: "up"
-    },
-    {
-      rank: 5,
-      provider: "GPT-4o",
-      company: "OpenAI",
-      avgCost: 2.45,
-      avgLatency: 2.8,
-      qualityScore: 0.93,
-      costEfficiency: 0.38,
-      trend: "down"
-    }
-  ];
+  const [data, setData] = React.useState<LeaderboardItem | null>(null);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const result = await leaderboardData.getLeaderboard();
+      setData(result);
+    };
+    fetchData();
+  }, []);
+
+  if (!data || !Array.isArray(data)) {
+    return <div>No leaderboard data available.</div>;
+  }
 
   const getRankIcon = (rank: number) => {
     if (rank === 1) return <Crown className="h-5 w-5 text-warning" />;
@@ -106,7 +69,7 @@ const Leaderboard = () => {
 
       {/* Top 3 Podium */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        {leaderboardData.slice(0, 3).map((item, index) => (
+        {data.slice(0, 3).map((item, index) => (
           <Card key={item.rank} className={`relative ${item.rank === 1 ? 'ring-2 ring-primary/20 bg-primary/5' : ''}`}>
             <CardHeader className="text-center pb-2">
               <div className="flex justify-center mb-2">
@@ -171,7 +134,7 @@ const Leaderboard = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {leaderboardData.map((item) => (
+              {data.map((item) => (
                 <TableRow key={item.rank} className={item.rank <= 3 ? 'bg-muted/20' : ''}>
                   <TableCell>
                     <div className="flex items-center space-x-2">

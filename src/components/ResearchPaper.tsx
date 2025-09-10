@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Download, ExternalLink, FileText, Users, Calendar } from "lucide-react";
+import './styles.css'; // This is the import statement
+
 
 const ResearchPaper = () => {
   const sections = [
@@ -22,8 +24,8 @@ const ResearchPaper = () => {
       <Card className="bg-gradient-to-r from-tech-blue/5 to-tech-purple/5 border-tech-blue/20">
         <CardHeader className="text-center space-y-6">
           <div className="space-y-4">
-            <Badge className="bg-tech-blue text-white">Research Paper</Badge>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent">
+            <Badge className="bg-research-blue text-white ">Research Paper</Badge>
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text ">
               Multimodal Tokenization Cost Analysis: Finding the Optimal Route for AI Processing
             </CardTitle>
             <div className="flex items-center justify-center gap-6 text-muted-foreground">
@@ -194,13 +196,13 @@ const ResearchPaper = () => {
             <CardContent>
               <div className="bg-background p-4 rounded-lg border font-mono text-sm">
                 <pre className="whitespace-pre-wrap text-muted-foreground">
-{`@inproceedings{modalroute2024,
-  title={Multimodal Tokenization Cost Analysis: Finding the Optimal Route for AI Processing},
-  author={Research Team},
-  booktitle={AI Conference 2024},
-  year={2024},
-  url={https://modalroute-playground.com}
-}`}
+                  {`@inproceedings{modalroute2024,
+                    title={Multimodal Tokenization Cost Analysis: Finding the Optimal Route for AI Processing},
+                    author={Research Team},
+                    booktitle={AI Conference 2024},
+                    year={2024},
+                    url={https://modalroute-playground.com}
+                  }`}
                 </pre>
               </div>
               <Button className="mt-4" variant="outline" size="sm">
