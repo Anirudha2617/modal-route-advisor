@@ -16,8 +16,8 @@ import {
   Download
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
-
+import heroDashboard from "@/assets/hero-dashboard.png";
+import rp from "@/assets/rp/rp_v1.pdf";
 const Dashboard = () => {
   const recentRuns = [
     {
@@ -52,52 +52,51 @@ const Dashboard = () => {
   return (
     <div className="space-y-8">
 
-      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-tech-blue via-tech-purple to-tech-blue p-8 text-white">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl font-bold">
-              ModalRoute
-              <span className="block text-2xl font-normal opacity-90">
-                Multimodal AI Cost Research Platform
-              </span>
-            </h1>
-            <p className="text-lg opacity-90 leading-relaxed">
-              Companion website for our research on multimodal tokenization cost analysis. 
-              Explore interactive results, reproduce experiments, and discover the most 
-              cost-effective AI processing routes.
-            </p>
-            <div className="flex gap-4">
-              <Button size="lg" className="bg-white text-tech-blue hover:bg-white/90" asChild>
-                <Link to="/new">
-                  Try It Yourself
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
-                <Link to="/paper">
-                  Read Paper
-                </Link>
-              </Button>
+      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-tech-blue via-tech-purple to-tech-blue p-8 text-white" style={{padding:'0px'}}>
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-6">
+              <h1 className="text-4xl font-bold">
+                ModalRoute
+                <span className="block text-2xl font-normal opacity-90">
+                  Multimodal AI Cost Research Platform
+                </span>
+              </h1>
+              <p className="text-lg opacity-90 leading-relaxed">
+                Companion website for our research on multimodal tokenization cost analysis. 
+                Explore interactive results, reproduce experiments, and discover the most 
+                cost-effective AI processing routes.
+              </p>
+              <div className="flex gap-4">
+                <Button size="lg" className="bg-white text-tech-blue hover:bg-white/90" style={{color:'black'}} asChild>
+                  <Link to="/new">
+                    Try It Yourself
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                  <Link to="/paper">
+                    Read Paper
+                  </Link>
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <img 
+                src={heroDashboard} 
+                alt="ModalRoute Research Platform" 
+                className="rounded-lg shadow-2xl"
+              />
             </div>
           </div>
-          <div className="relative">
-            <img 
-              src={heroDashboard} 
-              alt="ModalRoute Research Platform" 
-              className="rounded-lg shadow-2xl"
-            />
-          </div>
-        </div>
       </section>
 
       {/* Research Summary */}
       <section className="space-y-8">
-        <div className="text-center space-y-4">
+        <div className="text-left space-y-4">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent">
             About This Research
           </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Understanding the cost-performance trade-offs in multimodal AI processing
+          <p className="text-muted-foreground text-lg max-w-3xl p-0 mx-0 italic">
+            <b>Understanding the cost-performance trade-offs in multimodal AI processing</b>
           </p>
         </div>
 
@@ -110,39 +109,39 @@ const Dashboard = () => {
                 This research presents a comprehensive benchmarking framework that analyzes tokenization costs, processing latency, 
                 and task accuracy across major AI providers for identical semantic content presented in different modalities.
               </p>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                We systematically converted 1,000 documents into multiple formats and evaluated performance across extraction, 
-                summarization, and table capture tasks. Our findings reveal that image processing can be up to 340% more expensive 
-                than text for equivalent tasks, while maintaining 92-98% accuracy. We introduce a cost-optimization algorithm that 
-                recommends the most economical modality route while preserving task quality within acceptable thresholds.
-              </p>
+              <br />
+<p className="text-muted-foreground leading-relaxed"> We systematically converted 150 documents into multiple formats and evaluated performance across extraction, summarization, and table capture tasks. Our findings indicate that image inputs can be significantly more token-efficient than text for equivalent tasks in Gemini 2.5 Pro and many other models, while maintaining high accuracy. We introduce a cost-optimization algorithm that recommends the most economical modality route while preserving task quality within acceptable thresholds. </p>
+
+
+            <div className="flex justify-left gap-4 pt-6">
+            <a href={rp} download="Cross-Modal Tokenization Economics.pdf">
+              <Button className="bg-gradient-to-r from-tech-blue to-tech-purple">
+                <FileText className="mr-2 h-4 w-4" />
+                Download Paper
+              </Button>
+            </a>
+
+
+              <Button variant="outline">
+                <Download className="mr-2 h-4 w-4" />
+                Download Dataset
+              </Button>
+            </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-tech-blue/20">
               <div className="text-center space-y-2">
-                <div className="text-3xl font-bold text-tech-blue">1,000</div>
+                <div className="text-3xl font-bold text-tech-blue">150</div>
                 <div className="text-sm text-muted-foreground">Documents Analyzed</div>
               </div>
               <div className="text-center space-y-2">
-                <div className="text-3xl font-bold text-tech-purple">4</div>
+                <div className="text-3xl font-bold text-tech-purple">10</div>
                 <div className="text-sm text-muted-foreground">Modalities Tested</div>
               </div>
               <div className="text-center space-y-2">
                 <div className="text-3xl font-bold text-success">340%</div>
                 <div className="text-sm text-muted-foreground">Max Cost Difference</div>
               </div>
-            </div>
-
-            <div className="flex justify-center gap-4 pt-6">
-              <Button className="bg-gradient-to-r from-tech-blue to-tech-purple">
-                <FileText className="mr-2 h-4 w-4" />
-                Download Paper
-              </Button>
-              <Button variant="outline">
-                <Download className="mr-2 h-4 w-4" />
-                Download Dataset
-              </Button>
             </div>
           </CardContent>
         </Card>

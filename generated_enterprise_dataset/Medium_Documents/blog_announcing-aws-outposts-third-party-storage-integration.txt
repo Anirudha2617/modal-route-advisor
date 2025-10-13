@@ -1,0 +1,75 @@
+Announcing AWS Outposts third-party storage integration with Dell and HPE
+by Micah Walter
+on
+30 SEP 2025
+in
+AWS Outposts
+,
+AWS Outposts rack
+,
+Launch
+,
+News
+Permalink
+Comments
+Share
+Since
+announcing second-generation AWS Outposts racks
+in April with breakthrough performance and scalability, we’ve continued to innovate on behalf of our customers at the edge of the cloud. Today, we’re expanding
+AWS Outposts
+third-party storage integration program to include
+Dell PowerStore
+and
+HPE Alletra Storage MP B10000
+systems, joining our list of existing integrations with
+NetApp on-premises enterprise storage arrays
+and
+Pure Storage FlashArray
+. This program makes it easy for customers to use AWS Outposts with third-party storage arrays through AWS native tooling. The solution integration is particularly important for organizations migrating VMware workloads to AWS who need to maintain their existing storage infrastructure during the transition, and for those who must meet strict data residency requirements by keeping their data on-premises while using AWS services.
+This announcement builds upon two significant storage integration milestones we achieved in the past year. In December 2024, we introduced
+the ability to attach block data volumes from third-party storage
+arrays to Amazon EC2 instances on Outposts directly through the AWS Management Console. Then in July 2025, we enabled
+booting Amazon EC2 instances directly
+from these external storage arrays. Now, with the addition of Dell and HPE, customers have even more choice in how they integrate their on-premises storage investments with
+AWS Outposts
+.
+Enhanced storage integration capabilities
+Our third-party storage integration supports both data and boot volumes, offering two boot methods: iSCSI SANboot and Localboot. The iSCSI SANboot option enables both read-only and read-write boot volumes, while Localboot supports read-only boot volumes using either iSCSI or NVMe-over-TCP protocols. With this comprehensive approach, customers can centrally manage their storage resources while maintaining the consistent hybrid experience that Outposts provides.
+Through the
+Amazon EC2
+Launch Instance Wizard in the AWS Management Console, customers can configure their instances to use external storage from any of our supported partners. For boot volumes, we provide AWS-verified
+AMIs
+for
+Windows Server 2022
+and
+Red Hat Enterprise Linux 9
+, with automation scripts available through
+AWS Samples
+to simplify the setup process.
+Support for various Outposts configurations
+All third-party storage integration features are supported on Outposts 2U servers and both generations of Outposts racks. Support for second-generation Outposts racks means customers can combine the enhanced performance of our latest EC2 instances on Outposts—including twice the vCPU, memory, and network bandwidth—with their preferred storage solutions. The integration works seamlessly with both our new simplified network scaling capabilities and specialized Amazon EC2 instances designed for ultra-low latency and high throughput workloads.
+Things to know
+Customers can begin using these capabilities today with their existing Outposts deployments or when ordering new Outposts through the
+AWS Management Console
+. If you are using third-party storage integration with Outposts servers, you can have either your onsite personnel or a third-party IT provider install the servers for you. After the Outposts servers are connected to your network, AWS will remotely provision compute and storage resources so you can start launching applications. For Outposts rack deployments, the process involves a setup where AWS technicians verify site conditions and network connectivity before the rack installation and activation. Storage partners assist with the implementation of the third-party storage components.
+Third-party storage integration for Outposts with all compatible storage vendors is available at no additional charge in all AWS Regions where Outposts is supported. See the FAQs for
+Outposts servers
+and
+Outposts racks
+for the latest list of supported Regions.
+This expansion of our Outposts third-party storage integration program demonstrates our continued commitment to providing flexible, enterprise-grade hybrid cloud solutions, meeting customers where they are in their cloud migration journey. To learn more about this capability and our supported storage vendors, visit the
+AWS Outposts partner page
+and our technical documentation for
+Outposts servers
+,
+second-generation Outposts racks
+, and
+first-generation Outposts racks.
+To learn more about partner solutions, check out
+Dell PowerStore integration with AWS Outposts
+and
+HPE Alletra Storage MP B10000 integration with AWS Outposts
+.
+Micah Walter
+Micah Walter is a Sr. Solutions Architect supporting enterprise customers in the New York City region and beyond. He advises executives, engineers, and architects at every step along their journey to the cloud, with a deep focus on sustainability and practical design. In his free time, Micah enjoys the outdoors, photography, and chasing his kids around the house.
+Loading comments…

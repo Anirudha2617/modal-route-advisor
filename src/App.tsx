@@ -10,6 +10,7 @@ import NewExperiment from "./components/NewExperiment";
 import Results from "./components/Results";
 import Leaderboard from "./components/Leaderboard";
 import NotFound from "./pages/NotFound";
+import Calculator from "./components/calculator/Calculator";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
               <Route path="/new" element={<NewExperiment />} />
               <Route path="/results" element={<Results />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/calculator" element={<Calculator />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

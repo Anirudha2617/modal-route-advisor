@@ -1,0 +1,177 @@
+Introducing new compute-optimized Amazon EC2 C8i and C8i-flex instances
+by
+Channy Yun (윤석찬)
+on
+06 OCT 2025
+in
+Amazon EC2
+,
+Launch
+,
+News
+Permalink
+Comments
+Share
+After launching
+Amazon Elastic Compute Cloud (Amazon EC2)
+memory-optimized
+R8i and R8i-flex instances
+and general-purpose
+M8i and M8i-flex instances
+, I am happy to announce the general availability of compute-optimized
+C8i and C8i-flex instances
+powered by custom Intel Xeon 6 processors available only on AWS with sustained all-core 3.9 GHz turbo frequency and feature a 2:1 ratio of memory to vCPU. These instances deliver the highest performance and fastest memory bandwidth among comparable Intel processors in the cloud.
+The C8i and C8i-flex instances offer up to 15 percent better price-performance, and 2.5 times more memory bandwidth compared to
+C7i and C7i-flex instances
+. The C8i and C8i-flex instances are up to 60 percent faster for NGINX web applications, up to 40 percent faster for AI deep learning recommendation models, and 35 percent faster for Memcached stores compared to C7i and C7i-flex instances.
+C8i and C8i-flex instances are ideal for running compute-intensive workloads, such as web servers, caching, Apache.Kafka, ElasticSearch, batch processing, distributed analytics, high performance computing (HPC), ad serving, highly scalable multiplayer gaming, and video encoding.
+As like other 8th generation instances, these instances use the new sixth generation
+AWS Nitro Cards
+, delivering up to two times more network and
+Amazon Elastic Block Storage (Amazon EBS)
+bandwidth compared to the previous generation instances. They also support bandwidth configuration with 25 percent allocation adjustments between network and Amazon EBS bandwidth, enabling better database performance, query processing, and logging speeds.
+C8i instances
+C8i instances provide up to 384 vCPUs and 768 GiB memory including bare metal instances that provide dedicated access to the underlying physical hardware. These instances help you to run compute-intensive workloads, such as CPU-based inference, and video streaming that need the largest instance sizes or high CPU continuously.
+Here are the specs for C8i instances:
+Instance size
+vCPUs
+Memory (GiB)
+Network bandwidth (Gbps)
+EBS bandwidth (Gbps)
+c8i.large
+2
+4
+Up to 12.5
+Up to 10
+c8i.xlarge
+4
+8
+Up to 12.5
+Up to 10
+c8i.2xlarge
+8
+16
+Up to 15
+Up to 10
+c8i.4xlarge
+16
+32
+Up to 15
+Up to 10
+c8i.8xlarge
+32
+64
+15
+10
+c8i.12xlarge
+48
+96
+22.5
+15
+c8i.16xlarge
+64
+128
+30
+20
+c8i.24xlarge
+96
+192
+40
+30
+c8i.32xlarge
+128
+256
+50
+40
+c8i.48xlarge
+192
+384
+75
+60
+c8i.96xlarge
+384
+768
+100
+80
+c8i.metal-48xl
+192
+384
+75
+60
+c8i.metal-96xl
+384
+768
+100
+80
+C8i-flex instances
+C8i-flex instances are a lower-cost variant of the C8i instances, with 5 percent better price performance at 5 percent lower prices. These instances are designed for workloads that benefit from the latest generation performance but don’t fully utilize all compute resources. These instances can reach up to the full CPU performance 95 percent of the time.
+Here are the specs for the C8i-flex instances:
+Instance size
+vCPUs
+Memory (GiB)
+Network bandwidth (Gbps)
+EBS bandwidth (Gbps)
+c8i-flex.large
+2
+4
+Up to 12.5
+Up to 10
+c8i-flex.xlarge
+4
+8
+Up to 12.5
+Up to 10
+c8i-flex.2xlarge
+8
+16
+Up to 15
+Up to 10
+c8i-flex.4xlarge
+16
+32
+Up to 15
+Up to 10
+c8i-flex.8xlarge
+32
+64
+Up to 15
+Up to 10
+c8i-flex.12xlarge
+48
+96
+Up to 22.5
+Up to 15
+c8i-flex.16xlarge
+64
+128
+Up to 30
+Up to 20
+If you’re currently using earlier generations of compute-optimized instances, you can adopt C8i-flex instances without having to make changes to your application or your workload.
+Now available
+Amazon EC2 C8i and C8i-flex instances are available today in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe (Spain)
+AWS Regions
+. C8i and C8i-flex instances can be purchased as
+On-Demand
+,
+Savings Plan
+, and
+Spot instances
+. C8i instances are also available in
+Dedicated Instances
+and
+Dedicated Hosts
+. To learn more, visit the
+Amazon EC2 Pricing page
+.
+Give C8i and C8i-flex instances a try in the
+Amazon EC2 console
+. To learn more, visit the
+Amazon EC2 C8i instances page
+and send feedback to
+AWS re:Post for EC2
+or through your usual AWS Support contacts.
+—
+Channy
+Channy Yun (윤석찬)
+Channy is a Lead Blogger of AWS News Blog and Principal Developer Advocate for AWS Cloud. As an open web enthusiast and blogger at heart, he loves community-driven learning and sharing of technology.
+Loading comments…

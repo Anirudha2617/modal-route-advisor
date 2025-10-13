@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asteroid Impact Simulation</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden; /* Hide scrollbars */
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+        #impactButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #ff4500;
+            background-color: #8b0000;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button id="impactButton">START IMPACT SIMULATION</button>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        const IMPACT_LOCATION = { lat: 35.0272, lng: -111.0225 }; // Meteor Crater, Arizona
+        const IMPACT_RADIUS_METERS = 5000; // 5 km blast radius for visualization
+
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: IMPACT_LOCATION,
+                zoom: 14,
+                mapId: 'f1400178b164ad175daf17a0', // <-- ⚠️ REPLACE THIS WITH YOUR MAP ID
+                tilt: 65,
+                heading: 140,
+                disableDefaultUI: true,
+                keyboardShortcuts: false,
+                mapTypeId: 'satellite'
+            });
+
+            document.getElementById('impactButton').addEventListener('click', startImpactSequence);
+        }
+
+        async function startImpactSequence() {
+            // Disable button during animation
+            document.getElementById('impactButton').disabled = true;
+            document.getElementById('impactButton').textContent = 'IMPACT IN PROGRESS...';
+
+            // 1. Pan the camera to the impact point
+            map.panTo(IMPACT_LOCATION);
+            map.setZoom(15);
+            await sleep(2000); // Wait 2 seconds for dramatic effect
+
+            // 2. The Impact Flash
+            const impactFlash = createImpactFlash();
+            await animateFlash(impactFlash);
+
+            // 3. The Shockwave (starts just after the flash)
+            const shockwave = createShockwave();
+            animateShockwave(shockwave); // This runs in parallel
+            
+            // 4. The Aftermath: Place the crater
+            await sleep(1000); // Wait a moment before the crater appears
+            createCraterOverlay();
+
+            // Re-enable button after a delay
+            setTimeout(() => {
+                document.getElementById('impactButton').disabled = false;
+                document.getElementById('impactButton').textContent = 'RE-RUN SIMULATION';
+            }, 4000);
+        }
+
+        // Helper function for delays
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // --- VISUAL EFFECTS FUNCTIONS ---
+
+        function createImpactFlash() {
+            return new google.maps.Circle({
+                map: map,
+                center: IMPACT_LOCATION,
+                radius: 0,
+                fillColor: '#FFFFFF',
+                fillOpacity: 0.9,
+                strokeWeight: 0,
+                clickable: false
+            });
+        }
+
+        async function animateFlash(flashCircle) {
+            const duration = 500; // ms
+            const maxRadius = IMPACT_RADIUS_METERS * 0.5;
+            const startTime = Date.now();
+
+            function animate() {
+                const elapsedTime = Date.now() - startTime;
+                if (elapsedTime > duration) {
+                    flashCircle.setMap(null); // Remove flash from map
+                    return;
+                }
+                const progress = elapsedTime / duration;
+                // Animate radius and fade out opacity
+                flashCircle.setRadius(progress * maxRadius);
+                flashCircle.setOptions({ fillOpacity: 0.9 * (1 - progress) });
+                requestAnimationFrame(animate);
+            }
+            animate();
+            await sleep(duration);
+        }
+
+        function createShockwave() {
+            return new google.maps.Circle({
+                map: map,
+                center: IMPACT_LOCATION,
+                radius: 100,
+                strokeColor: '#FFD700',
+                strokeOpacity: 0.8,
+                strokeWeight: 10,
+                fillOpacity: 0,
+                clickable: false
+            });
+        }
+
+        function animateShockwave(shockwaveCircle) {
+            const duration = 4000; // ms
+            const maxRadius = IMPACT_RADIUS_METERS;
+            const startTime = Date.now();
+
+            function animate() {
+                const elapsedTime = Date.now() - startTime;
+                if (elapsedTime > duration) {
+                    shockwaveCircle.setMap(null); // Remove shockwave
+                    return;
+                }
+                const progress = elapsedTime / duration;
+                shockwaveCircle.setRadius(progress * maxRadius);
+                // Animate stroke weight and fade out opacity
+                shockwaveCircle.setOptions({
+                    strokeWeight: 15 * (1 - progress),
+                    strokeOpacity: 0.8 * (1 - progress)
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function createCraterOverlay() {
+            const craterBounds = {
+                north: IMPACT_LOCATION.lat + 0.008,
+                south: IMPACT_LOCATION.lat - 0.008,
+                east: IMPACT_LOCATION.lng + 0.012,
+                west: IMPACT_LOCATION.lng - 0.012,
+            };
+
+            new google.maps.GroundOverlay(
+                'image.png', // The path to your image
+                craterBounds,
+                { map: map, opacity: 0.85 }
+            );
+        }
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1MXX9wLXYuV8jcArJiwTJ758ReHz5O8&callback=initMap">
+    </script>
+</body>
+</html>

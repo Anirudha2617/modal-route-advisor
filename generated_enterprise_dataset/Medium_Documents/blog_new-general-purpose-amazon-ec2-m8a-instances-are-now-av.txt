@@ -1,0 +1,139 @@
+New general-purpose Amazon EC2 M8a instances are now available
+by Betty Zheng (郑予彬)
+on
+08 OCT 2025
+in
+Amazon EC2
+,
+Amazon EC2 Bare Metal
+,
+Compute
+,
+Launch
+,
+News
+Permalink
+Comments
+Share
+Today, we’re announcing the availability of
+Amazon Elastic Compute Cloud (Amazon EC2)
+M8a instances, the latest addition to the general-purpose M instance family. These instances are powered by the
+5th Generation AMD EPYC (codename Turin) processors
+with a maximum frequency of 4.5GHz. Customers can expect up to 30% higher performance and up to 19% better price performance compared to M7a instances. They also provide higher memory bandwidth, improved networking and storage throughput, and flexible configuration options for a broad set of general-purpose workloads.
+Improvements in M8a
+M8a instances deliver up to 30% better performance per vCPU compared to M7a instances, making them ideal for applications that require benefit from high performance and high throughput such as financial applications, gaming, rendering, application servers, simulation modeling, midsize data stores, application development environments, and caching fleets.
+They provide 45% more memory bandwidth compared to M7a instances, accelerating in-memory databases, distributed caches, and real-time analytics.
+For workloads with high I/O requirements, M8a instances provide up to 75 Gbps of networking bandwidth and 60 Gbps of
+Amazon Elastic Block Store (Amazon EBS)
+bandwidth, a 50% improvement over the previous generation. These enhancements support modern applications that rely on rapid data transfer and low-latency network communication.
+Each vCPU on an M8a instance corresponds to a physical CPU core, meaning there is no simultaneous multithreading (SMT). In application benchmarks, M8a instances delivered up to 60% faster performance for
+GroovyJVM
+and up to 39% faster performance for
+Cassandra
+compared to M7a instances.
+M8a instances support
+instance bandwidth configuration (IBC)
+, which provides flexibility to allocate resources between networking and EBS bandwidth. This gives customers the flexibility to scale network or EBS bandwidth by up to 25% and improve database performance, query processing, and logging speeds.
+M8a is available in ten virtualized sizes and two bare metal options (
+metal-24xl
+and
+metal-48xl)
+, providing deployment choices that scale from small applications to large enterprise workloads. All of these improvements are built on the
+AWS Nitro System
+, which delivers low virtualization overhead, consistent performance, and advanced security across all instance sizes. These instances are built using the latest sixth generation AWS Nitro Cards, which offload and accelerate I/O for functions, increasing overall system performance.
+M8a instances feature sizes of up to 192 vCPU with 768GiB RAM. Here are the detailed specs:
+M8a
+vCPUs
+Memory (GiB)
+Network bandwidth (Gbps)
+EBS bandwidth (Gbps)
+medium
+1
+4
+Up to 12.5
+Up to 10
+large
+2
+8
+Up to 12.5
+Up to 10
+xlarge
+4
+16
+Up to 12.5
+Up to 10
+2xlarge
+8
+32
+Up to 15
+Up to 10
+4xlarge
+16
+64
+Up to 15
+Up to 10
+8xlarge
+32
+128
+15
+10
+12xlarge
+48
+192
+22.5
+15
+16xlarge
+64
+256
+30
+20
+24xlarge
+96
+384
+40
+30
+48xlarge
+192
+768
+75
+60
+metal-24xl
+96
+384
+40
+30
+metal-48xl
+192
+768
+75
+60
+For a complete list of instance sizes and specifications, refer to the
+Amazon EC2 M8a instances page
+.
+When to use M8a instances
+M8a is a strong fit for general-purpose applications that need a balance of compute, memory, and networking. M8a instances are ideal for web and application hosting, microservices architectures, and databases where predictable performance and efficient scaling are important.
+These instances are SAP certified and also well suited for enterprise workloads such as financial applications and enterprise resource planning (ERP) systems. They’re equally effective for in-memory caching and customer relationship management (CRM), in addition to development and test environments that require cost efficiency and flexibility. With this versatility, M8a supports a wide spectrum of workloads while helping customers improve price performance.
+Now available
+Amazon EC2 M8a instances are available today in US East (Ohio) US West (Oregon) and Europe (Spain)
+AWS Regions
+. M8a instances can be purchased as
+On-Demand
+,
+Savings Plans
+, and
+Spot Instances
+. M8a instances are also available on
+Dedicated Hosts
+. To learn more, visit the
+Amazon EC2 Pricing page
+.
+To learn more, visit the
+Amazon EC2 M8a instances page
+and send feedback to
+AWS re:Post for EC2
+or through your usual AWS support contacts.
+—
+Betty
+Betty Zheng (郑予彬)
+Betty Zheng is a Senior Developer Advocate at AWS, focusing on creating developer-centric content for Cloud Native, Cloud Security, and Generative AI technologies. With over 20 years of experience in the ICT industry and 18 years as an application architect and cloud infrastructure expert, She is actively engaged with the Chinese developer community and is committed to helping developers understand the technologies and transform their ideas into execution.
+Loading comments…

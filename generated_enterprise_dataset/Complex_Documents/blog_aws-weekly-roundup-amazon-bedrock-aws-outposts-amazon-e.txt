@@ -1,0 +1,97 @@
+AWS Weekly Roundup: Amazon Bedrock, AWS Outposts, Amazon ECS Managed Instances, AWS Builder ID, and more (October 6, 2025)
+by Prasad Rao
+on
+06 OCT 2025
+in
+Amazon Bedrock
+,
+Amazon CloudWatch
+,
+Amazon Elastic Container Service
+,
+AWS Outposts
+,
+Launch
+,
+News
+Permalink
+Comments
+Share
+Last week, Anthropic’s Claude Sonnet 4.5—the world’s best coding model according to SWE-Bench – became available in
+Amazon Q command line interface (CLI)
+and
+Kiro
+. I’m excited about this for two reasons:
+First, a few weeks ago I spent 4 intensive days with a global customer delivering an AI-assisted development workshop, where I experienced firsthand how
+Amazon Q
+CLI boosts developer productivity. During the workshop, the customer was able to add a new feature in their application within a day using Amazon Q CLI, which would have traditionally taken them at least a couple of weeks. With Anthropic’s Claude Sonnet 4.5 in Amazon Q CLI, I know developer productivity will be enhanced further.
+Second, I’ve started preparing for my code talk at
+AWS re:Invent 2025
+, where my co-speaker and I will show live coding to modernize a legacy codebase using Kiro. I can’t wait to use Anthropic’s Claude Sonnet 4.5 in Kiro to create a live demo. If you want to see this demo and over a thousand other sessions on cloud and AI, join us at
+AWS re:Invent 2025
+in Las Vegas from December 1–5.
+Last week’s launches
+Here are some launches that got my attention:
+Availability of Claude Sonnet 4.5 in Amazon Bedrock
+– Anthropic’s most intelligent model, best for coding and complex agents, is now available in Amazon Bedrock. By using Claude Sonnet 4.5 in Amazon Bedrock, developers gain access to a fully managed service that not only provides a unified API for foundation models (FMs) but keeps their data under complete control with enterprise-grade tools for security, and optimization.
+AWS Outposts supports third-party storage integration with Dell and HPE
+– AWS Outposts third-party storage integration now includes
+Dell PowerStore
+and
+HPE Alletra Storage MP B10000
+systems, joining the list of existing integrations with
+NetApp on-premises enterprise storage arrays
+and
+Pure Storage FlashArray
+. This integration serves three key purposes. First, it helps you maintain your existing storage infrastructure while migrating VMware workloads to AWS. Second, it helps you meet strict data residency requirements by keeping your data on premises while using AWS services. Third, it means you can use AWS Outposts with third-party storage arrays through AWS tooling.
+Amazon ECS Managed Instances now available
+– Amazon ECS Managed Instances for containerized applications is a new fully managed compute option for Amazon ECS designed to eliminate infrastructure management overhead while giving you access to the full capabilities of Amazon EC2. ECS Managed Instances helps you quickly launch and scale your workloads while enhancing performance and reducing your total cost of ownership.
+Application map is now generally available for Amazon CloudWatch
+– Amazon CloudWatch now helps you monitor large-scale distributed applications by automatically discovering and organizing services into groups based on configurations and their relationships. With this new application performance monitoring (APM) capability, you can quickly visualize which applications and dependencies to focus on while troubleshooting your distributed applications.
+Amazon Bedrock AgentCore Model Context Protocol (MCP) server now available
+– With built-in support for runtime, gateway integration, identity management, and agent memory, the AgentCore MCP server is purpose-built to speed up creation of components compatible with Bedrock AgentCore. You can use the AgentCore MCP server for rapid prototyping, production AI solutions, or to scale your agent infrastructure.
+Additional Updates
+Here are some additional news items and blog posts that I found interesting:
+AWS Builder ID now supports Sign in with Google
+– You can now create an AWS Builder ID using sign in with Google. AWS Builder ID is a personal profile that provides access to AWS applications including Kiro, AWS Builder Center, AWS Training and Certification, AWS re:Post and AWS Startups.
+AWS API MCP Server v1.0.0 release
+– AWS API MCP server acts as a bridge between AI assistants and AWS services enabling foundation models to interact with any AWS API through natural language by creating and executing syntactically correct CLI commands. The AWS API MCP Server is open-source and available now on
+AWS Labs GitHub repository
+.
+AWS Knowledge MCP Server now generally available
+– The AWS Knowledge server gives AI agents and MCP clients access to authoritative knowledge, including documentation, blog posts, What’s New announcements, and Well-Architected best practices, in an LLM-compatible format. With this release, the server also includes knowledge about the regional availability of AWS APIs and CloudFormation resources.
+AWS Transform now enables Terraform for VMware network automation
+– AWS Transform now offers Terraform as an additional option to generate network infrastructure code automatically from VMware environments. The service converts your source network definitions into reusable Terraform modules, complementing current AWS CloudFormation and AWS Cloud Development Kit (CDK) support.
+Upcoming AWS events
+Check your calendar and sign up for upcoming AWS events:
+AWS AI Agent Global Hackathon
+– This is your chance to dive deep into our powerful generative AI stack and create something truly awesome. From September 8th to October 20th, you have the opportunity to create AI agents using AWS suite of AI services, competing for over $45,000 in prizes and exclusive go-to-market opportunities.
+AWS Gen AI Lofts
+– You can learn AWS AI products and services with exclusive sessions, meet industry-leading experts, and have valuable networking opportunities with investors and peers. Register in your nearest city:
+Paris
+(October 7–21),
+London
+(Oct 13–21), and
+Tel Aviv
+(November 11–19).
+AWS Community Days
+– Join community-led conferences that feature technical discussions, workshops, and hands-on labs led by expert AWS users and industry leaders from around the world:
+Munich
+(October 7),
+Budapest
+(October 16).
+You can browse
+all upcoming AWS events
+and
+AWS startup events
+.
+That’s all for this week. Check back next Monday for another
+Weekly Roundup
+!
+—
+Prasad
+TAGS:
+Week in Review
+Prasad Rao
+Prasad Rao is a Principal Partner Solutions Architect at AWS based out of UK. His focus areas are .NET Application Modernization and Windows Workloads on AWS. He leverages his experience to help AWS Partners across EMEA for their long term technical enablement to build scalable architecture on AWS. He also mentors diverse people who are new to cloud and would like to get started on AWS.
+Loading comments…

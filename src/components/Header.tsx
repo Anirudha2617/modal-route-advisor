@@ -47,6 +47,11 @@ const Header = () => {
                 Benchmarks
               </Button>
             </Link>
+            <Link to="/calculator">
+              <Button variant={isActive("/calculator") ? "default" : "ghost"} className="h-9 px-3">
+                Calculator
+              </Button>
+            </Link>
           </nav>
         </div>
         

@@ -1,0 +1,59 @@
+Announcing Amazon ECS Managed Instances for containerized applications
+by Micah Walter
+on
+30 SEP 2025
+in
+Amazon EC2
+,
+Amazon Elastic Container Service
+,
+Announcements
+,
+Launch
+,
+News
+Permalink
+Comments
+Share
+Today, we’re announcing Amazon ECS Managed Instances, a new compute option for
+Amazon Elastic Container Service (Amazon ECS)
+that enables developers to use the full range of
+Amazon Elastic Compute Cloud (Amazon EC2)
+capabilities while offloading infrastructure management responsibilities to
+Amazon Web Service (AWS)
+. This new offering combines the operational simplicity of offloading infrastructure with the flexibility and control of Amazon EC2, which means customers can focus on building applications that drive innovation, while reducing total cost of ownership (TCO) and maintaining AWS best practices.
+Amazon ECS Managed Instances provides a fully managed container compute environment that supports a broad range of EC2 instance types and deep integration with AWS services. By default, it automatically selects the most cost-optimized EC2 instances for your workloads, but you can specify particular instance attributes or types when needed. AWS handles all aspects of infrastructure management, including provisioning, scaling, security patching, and cost optimization, enabling you to concentrate on building and running your applications.
+Let’s try it out
+Looking at the
+AWS Management Console
+experience for creating a new Amazon ECS cluster, I can see the new option for using ECS Managed Instances. Let’s take a quick tour of all the new options.
+After I’ve selected
+Fargate and Managed Instances
+, I’m presented with two options. If I select
+Use ECS default
+, Amazon ECS will choose general purpose instance types based on grouping together pending Tasks, and picking the optimum instance type based on cost and resilience metrics. This is the most straightforward and recommended way to get started. Selecting
+Use custom – advanced
+opens up additional configuration parameters, where I can fine-tune the attributes of instances Amazon ECS will use.
+By default, I see
+CPU
+and
+Memory
+as attributes, but I can select from 20 additional attributes to continue to filter the list of available instance types Amazon ECS can access.
+After I’ve made my attribute selections, I see a list of all the instance types that match my choices.
+From here, I can create my ECS cluster as usual and Amazon ECS will provision instances for me on my behalf based on the attributes and criteria I’ve defined in the previous steps.
+Key features of Amazon ECS Managed Instances
+With Amazon ECS Managed Instances, AWS takes full responsibility for infrastructure management, handling all aspects of instance provisioning, scaling, and maintenance. This includes implementing regular security patches initiated every 14 days (due to instance connection draining, the actual lifetime of the instance may be longer), with the ability to schedule maintenance windows using Amazon EC2 event windows to minimize disruption to your applications.
+The service provides exceptional flexibility in instance type selection. Although it automatically selects cost-optimized instance types by default, you maintain the power to specify desired instance attributes when your workloads require specific capabilities. This includes options for GPU acceleration, CPU architecture, and network performance requirements, giving you precise control over your compute environment.
+To help optimize costs, Amazon ECS Managed Instances intelligently manages resource utilization by automatically placing multiple tasks on larger instances when appropriate. The service continually monitors and optimizes task placement, consolidating workloads onto fewer instances to dry up, utilize and terminate idle (empty) instances, providing both high availability and cost efficiency for your containerized applications.
+Integration with existing AWS services is seamless, particularly with Amazon EC2 features such as EC2 pricing options. This deep integration means that you can maximize existing capacity investments while maintaining the operational simplicity of a fully managed service.
+Security remains a top priority with Amazon ECS Managed Instances. The service runs on Bottlerocket, a purpose-built container operating system, and maintains your security posture through automated security patches and updates. You can see all the updates and patches applied to the Bottlerocket OS image on the
+Bottlerocket website
+. This comprehensive approach to security keeps your containerized applications running in a secure, maintained environment.
+Available now
+Amazon ECS Managed Instances is available today in US East (North Virginia), US West (Oregon), Europe (Ireland), Africa (Cape Town), Asia Pacific (Singapore), and Asia Pacific (Tokyo) AWS Regions. You can start using Managed Instances through the AWS Management Console, AWS Command Line Interface (AWS CLI), or infrastructure as code (IaC) tools such as AWS Cloud Development Kit (AWS CDK) and AWS CloudFormation. You pay for the EC2 instances you use plus a management fee for the service.
+To learn more about Amazon ECS Managed Instances, visit the
+documentation
+and get started simplifying your container infrastructure today.
+Micah Walter
+Micah Walter is a Sr. Solutions Architect supporting enterprise customers in the New York City region and beyond. He advises executives, engineers, and architects at every step along their journey to the cloud, with a deep focus on sustainability and practical design. In his free time, Micah enjoys the outdoors, photography, and chasing his kids around the house.
+Loading comments…
