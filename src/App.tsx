@@ -10,11 +10,13 @@ import NewExperiment from "./components/NewExperiment";
 import Results from "./components/Results";
 import Leaderboard from "./components/Leaderboard";
 import NotFound from "./pages/NotFound";
-import Calculator from "./components/calculator/Calculator";
+import { Analytics } from "@vercel/analytics/next"
 
 const queryClient = new QueryClient();
 
 const App = () => (
+  <>
+  {process.env.NODE_ENV === 'production' && <Analytics />}
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -38,6 +40,7 @@ const App = () => (
       </div>
     </TooltipProvider>
   </QueryClientProvider>
+  </>
 );
 
 export default App;
