@@ -6,6 +6,8 @@ from google import genai
 from openai import OpenAI
 import tiktoken
 from PIL import Image
+from typing import List, Union
+
 
 # --- Initialize Clients ---
 API_KEY = "AIzaSyDk98kfYAR3nIg1zn0gRgjJRnlKNzS-scA" 
@@ -41,6 +43,17 @@ def count_tokens_gemini_text(text):
         print(f"[DEBUG] Gemini token error: {e}")
         return None
 
+def count_tokens_gemini(model: str, contents: List[Union[str, Image.Image]]) -> int:
+    """Counts tokens for multimodal input using the Gemini API."""
+    if not gemini_client:
+        return None
+    try:
+        response = gemini_client.models.count_tokens(model=model, contents=contents) 
+        return response.total_tokens
+    except Exception as e:
+        print(f"Gemini token count error: {e}")
+        return -1
+
 def count_tokens_gpt_text(text):
     if not openai_client:
         return None
@@ -71,6 +84,7 @@ def extract_questions(text):
         return [text]
     return qs
 
+
 # --- Process documents ---
 for idx, txt_file in enumerate(txt_files, start=1):
     doc_id = txt_file.stem
@@ -92,9 +106,16 @@ for idx, txt_file in enumerate(txt_files, start=1):
         gemini_tokens_text = count_tokens_gemini_text(q_text)
         gemini_text_time = round(time.time() - start_time, 3)
         
-        start_time = time.time()
-        gemini_tokens_image = count_tokens_gemini_text(q_text) if png_file.exists() else None
+
+
+        image_part = Image.open(png_file) if png_file.exists() else None
+        gemini_tokens_image = count_tokens_gemini(
+            model="gemini-2.5-flash", 
+            contents=["", image_part]
+        ) if png_file.exists() else None
         gemini_image_time = round(time.time() - start_time, 3)
+
+        
         
         # --- GPT Tokens ---
         start_time = time.time()
