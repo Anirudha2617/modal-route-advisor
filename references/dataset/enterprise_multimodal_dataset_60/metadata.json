@@ -1,0 +1,862 @@
+[
+  {
+    "id": "short_001",
+    "category": "short_docs",
+    "topic": "Quarterly Financial Analysis of Q2 2025",
+    "word_count": 257,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_001.txt",
+      "short_001.png"
+    ]
+  },
+  {
+    "id": "short_002",
+    "category": "short_docs",
+    "topic": "Market Entry Strategy: Southeast Asia",
+    "word_count": 203,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_002.txt",
+      "short_002.png"
+    ]
+  },
+  {
+    "id": "short_003",
+    "category": "short_docs",
+    "topic": "Whitepaper: Federated Learning for Healthcare",
+    "word_count": 435,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_003.txt",
+      "short_003.png"
+    ]
+  },
+  {
+    "id": "short_004",
+    "category": "short_docs",
+    "topic": "Operational Cost Optimization Report",
+    "word_count": 361,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_004.txt",
+      "short_004.png"
+    ]
+  },
+  {
+    "id": "short_005",
+    "category": "short_docs",
+    "topic": "Technical Note: Latency Reduction Techniques",
+    "word_count": 395,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_005.txt",
+      "short_005.png"
+    ]
+  },
+  {
+    "id": "short_006",
+    "category": "short_docs",
+    "topic": "Internal Audit Findings: IT Controls",
+    "word_count": 365,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_006.txt",
+      "short_006.png"
+    ]
+  },
+  {
+    "id": "short_007",
+    "category": "short_docs",
+    "topic": "Supply Chain Resilience Assessment",
+    "word_count": 370,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_007.txt",
+      "short_007.png"
+    ]
+  },
+  {
+    "id": "short_008",
+    "category": "short_docs",
+    "topic": "Internal Audit Findings: IT Controls",
+    "word_count": 360,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_008.txt",
+      "short_008.png"
+    ]
+  },
+  {
+    "id": "short_009",
+    "category": "short_docs",
+    "topic": "Market Entry Strategy: Southeast Asia",
+    "word_count": 461,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_009.txt",
+      "short_009.png"
+    ]
+  },
+  {
+    "id": "short_010",
+    "category": "short_docs",
+    "topic": "Technical Feasibility Study: Edge AI Deployment",
+    "word_count": 297,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_010.txt",
+      "short_010.png"
+    ]
+  },
+  {
+    "id": "short_011",
+    "category": "short_docs",
+    "topic": "API Design Guidelines and Versioning Policy",
+    "word_count": 285,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_011.txt",
+      "short_011.png"
+    ]
+  },
+  {
+    "id": "short_012",
+    "category": "short_docs",
+    "topic": "Product Requirements Document: Analytics Platform",
+    "word_count": 488,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_012.txt",
+      "short_012.png"
+    ]
+  },
+  {
+    "id": "short_013",
+    "category": "short_docs",
+    "topic": "Scalable Microservices Architecture for Payment Processing",
+    "word_count": 376,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_013.txt",
+      "short_013.png"
+    ]
+  },
+  {
+    "id": "short_014",
+    "category": "short_docs",
+    "topic": "Research Abstract: Novel Battery Materials",
+    "word_count": 220,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_014.txt",
+      "short_014.png"
+    ]
+  },
+  {
+    "id": "short_015",
+    "category": "short_docs",
+    "topic": "Regulatory Compliance Overview: GDPR & CCPA",
+    "word_count": 366,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "short_015.txt",
+      "short_015.png"
+    ]
+  },
+  {
+    "id": "medium_001",
+    "category": "medium_docs",
+    "topic": "Whitepaper: Federated Learning for Healthcare",
+    "word_count": 1195,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_001.txt",
+      "medium_001.png"
+    ]
+  },
+  {
+    "id": "medium_002",
+    "category": "medium_docs",
+    "topic": "Regulatory Compliance Overview: GDPR & CCPA",
+    "word_count": 1360,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_002.txt",
+      "medium_002.png"
+    ]
+  },
+  {
+    "id": "medium_003",
+    "category": "medium_docs",
+    "topic": "API Design Guidelines and Versioning Policy",
+    "word_count": 641,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_003.txt",
+      "medium_003.png"
+    ]
+  },
+  {
+    "id": "medium_004",
+    "category": "medium_docs",
+    "topic": "Technical Feasibility Study: Edge AI Deployment",
+    "word_count": 595,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_004.txt",
+      "medium_004.png"
+    ]
+  },
+  {
+    "id": "medium_005",
+    "category": "medium_docs",
+    "topic": "Scalable Microservices Architecture for Payment Processing",
+    "word_count": 688,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_005.txt",
+      "medium_005.png"
+    ]
+  },
+  {
+    "id": "medium_006",
+    "category": "medium_docs",
+    "topic": "Technical Feasibility Study: Edge AI Deployment",
+    "word_count": 1311,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_006.txt",
+      "medium_006.png"
+    ]
+  },
+  {
+    "id": "medium_007",
+    "category": "medium_docs",
+    "topic": "Whitepaper: Federated Learning for Healthcare",
+    "word_count": 840,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_007.txt",
+      "medium_007.png"
+    ]
+  },
+  {
+    "id": "medium_008",
+    "category": "medium_docs",
+    "topic": "Regulatory Compliance Overview: GDPR & CCPA",
+    "word_count": 970,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_008.txt",
+      "medium_008.png"
+    ]
+  },
+  {
+    "id": "medium_009",
+    "category": "medium_docs",
+    "topic": "Technical Feasibility Study: Edge AI Deployment",
+    "word_count": 1431,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_009.txt",
+      "medium_009.png"
+    ]
+  },
+  {
+    "id": "medium_010",
+    "category": "medium_docs",
+    "topic": "Executive Summary: M&A Opportunity - AcmeCorp",
+    "word_count": 937,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_010.txt",
+      "medium_010.png"
+    ]
+  },
+  {
+    "id": "medium_011",
+    "category": "medium_docs",
+    "topic": "API Design Guidelines and Versioning Policy",
+    "word_count": 853,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_011.txt",
+      "medium_011.png"
+    ]
+  },
+  {
+    "id": "medium_012",
+    "category": "medium_docs",
+    "topic": "Security Incident Response Playbook",
+    "word_count": 1116,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_012.txt",
+      "medium_012.png"
+    ]
+  },
+  {
+    "id": "medium_013",
+    "category": "medium_docs",
+    "topic": "Product Requirements Document: Analytics Platform",
+    "word_count": 1364,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_013.txt",
+      "medium_013.png"
+    ]
+  },
+  {
+    "id": "medium_014",
+    "category": "medium_docs",
+    "topic": "Internal Audit Findings: IT Controls",
+    "word_count": 1394,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_014.txt",
+      "medium_014.png"
+    ]
+  },
+  {
+    "id": "medium_015",
+    "category": "medium_docs",
+    "topic": "Security Incident Response Playbook",
+    "word_count": 664,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_015.txt",
+      "medium_015.png"
+    ]
+  },
+  {
+    "id": "medium_016",
+    "category": "medium_docs",
+    "topic": "RFP Response: Cloud Migration Services",
+    "word_count": 1155,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_016.txt",
+      "medium_016.png"
+    ]
+  },
+  {
+    "id": "medium_017",
+    "category": "medium_docs",
+    "topic": "Technical Note: Latency Reduction Techniques",
+    "word_count": 1006,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_017.txt",
+      "medium_017.png"
+    ]
+  },
+  {
+    "id": "medium_018",
+    "category": "medium_docs",
+    "topic": "Scalable Microservices Architecture for Payment Processing",
+    "word_count": 1393,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_018.txt",
+      "medium_018.png"
+    ]
+  },
+  {
+    "id": "medium_019",
+    "category": "medium_docs",
+    "topic": "Executive Summary: M&A Opportunity - AcmeCorp",
+    "word_count": 988,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_019.txt",
+      "medium_019.png"
+    ]
+  },
+  {
+    "id": "medium_020",
+    "category": "medium_docs",
+    "topic": "Security Incident Response Playbook",
+    "word_count": 1287,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_020.txt",
+      "medium_020.png"
+    ]
+  },
+  {
+    "id": "medium_021",
+    "category": "medium_docs",
+    "topic": "Executive Summary: M&A Opportunity - AcmeCorp",
+    "word_count": 713,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_021.txt",
+      "medium_021.png"
+    ]
+  },
+  {
+    "id": "medium_022",
+    "category": "medium_docs",
+    "topic": "Supply Chain Resilience Assessment",
+    "word_count": 688,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_022.txt",
+      "medium_022.png"
+    ]
+  },
+  {
+    "id": "medium_023",
+    "category": "medium_docs",
+    "topic": "Scalable Microservices Architecture for Payment Processing",
+    "word_count": 987,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_023.txt",
+      "medium_023.png"
+    ]
+  },
+  {
+    "id": "medium_024",
+    "category": "medium_docs",
+    "topic": "Technical Note: Latency Reduction Techniques",
+    "word_count": 629,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_024.txt",
+      "medium_024.png"
+    ]
+  },
+  {
+    "id": "medium_025",
+    "category": "medium_docs",
+    "topic": "Executive Summary: M&A Opportunity - AcmeCorp",
+    "word_count": 807,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "medium_025.txt",
+      "medium_025.png"
+    ]
+  },
+  {
+    "id": "long_001",
+    "category": "long_docs",
+    "topic": "Technical Feasibility Study: Edge AI Deployment",
+    "word_count": 1714,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_001.txt",
+      "long_001.png"
+    ]
+  },
+  {
+    "id": "long_002",
+    "category": "long_docs",
+    "topic": "Research Abstract: Novel Battery Materials",
+    "word_count": 2704,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_002.txt",
+      "long_002.png"
+    ]
+  },
+  {
+    "id": "long_003",
+    "category": "long_docs",
+    "topic": "Sustainability Impact Report: Carbon Reduction Plan",
+    "word_count": 2516,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_003.txt",
+      "long_003.png"
+    ]
+  },
+  {
+    "id": "long_004",
+    "category": "long_docs",
+    "topic": "Technical Note: Latency Reduction Techniques",
+    "word_count": 2153,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_004.txt",
+      "long_004.png"
+    ]
+  },
+  {
+    "id": "long_005",
+    "category": "long_docs",
+    "topic": "Sustainability Impact Report: Carbon Reduction Plan",
+    "word_count": 2039,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_005.txt",
+      "long_005.png"
+    ]
+  },
+  {
+    "id": "long_006",
+    "category": "long_docs",
+    "topic": "Research Abstract: Novel Battery Materials",
+    "word_count": 2856,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_006.txt",
+      "long_006.png"
+    ]
+  },
+  {
+    "id": "long_007",
+    "category": "long_docs",
+    "topic": "Scalable Microservices Architecture for Payment Processing",
+    "word_count": 1771,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_007.txt",
+      "long_007.png"
+    ]
+  },
+  {
+    "id": "long_008",
+    "category": "long_docs",
+    "topic": "Security Incident Response Playbook",
+    "word_count": 2877,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_008.txt",
+      "long_008.png"
+    ]
+  },
+  {
+    "id": "long_009",
+    "category": "long_docs",
+    "topic": "Internal Audit Findings: IT Controls",
+    "word_count": 2150,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_009.txt",
+      "long_009.png"
+    ]
+  },
+  {
+    "id": "long_010",
+    "category": "long_docs",
+    "topic": "Scalable Microservices Architecture for Payment Processing",
+    "word_count": 2258,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_010.txt",
+      "long_010.png"
+    ]
+  },
+  {
+    "id": "long_011",
+    "category": "long_docs",
+    "topic": "Market Entry Strategy: Southeast Asia",
+    "word_count": 2505,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_011.txt",
+      "long_011.png"
+    ]
+  },
+  {
+    "id": "long_012",
+    "category": "long_docs",
+    "topic": "Supply Chain Resilience Assessment",
+    "word_count": 2364,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_012.txt",
+      "long_012.png"
+    ]
+  },
+  {
+    "id": "long_013",
+    "category": "long_docs",
+    "topic": "Product Requirements Document: Analytics Platform",
+    "word_count": 2563,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_013.txt",
+      "long_013.png"
+    ]
+  },
+  {
+    "id": "long_014",
+    "category": "long_docs",
+    "topic": "Executive Summary: M&A Opportunity - AcmeCorp",
+    "word_count": 2124,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_014.txt",
+      "long_014.png"
+    ]
+  },
+  {
+    "id": "long_015",
+    "category": "long_docs",
+    "topic": "Regulatory Compliance Overview: GDPR & CCPA",
+    "word_count": 2775,
+    "formats": [
+      "text",
+      "image"
+    ],
+    "files": [
+      "long_015.txt",
+      "long_015.png"
+    ]
+  },
+  {
+    "id": "complex_001",
+    "category": "complex_docs",
+    "topic": "Market Entry Strategy: Southeast Asia",
+    "word_count": 1802,
+    "formats": [
+      "text",
+      "image",
+      "csv",
+      "chart_png"
+    ],
+    "files": [
+      "complex_001.txt",
+      "complex_001.png",
+      "complex_001_table.csv",
+      "complex_001_chart.png"
+    ]
+  },
+  {
+    "id": "complex_002",
+    "category": "complex_docs",
+    "topic": "Whitepaper: Federated Learning for Healthcare",
+    "word_count": 1841,
+    "formats": [
+      "text",
+      "image",
+      "csv",
+      "chart_png"
+    ],
+    "files": [
+      "complex_002.txt",
+      "complex_002.png",
+      "complex_002_table.csv",
+      "complex_002_chart.png"
+    ]
+  },
+  {
+    "id": "complex_003",
+    "category": "complex_docs",
+    "topic": "Regulatory Compliance Overview: GDPR & CCPA",
+    "word_count": 2989,
+    "formats": [
+      "text",
+      "image",
+      "csv",
+      "chart_png"
+    ],
+    "files": [
+      "complex_003.txt",
+      "complex_003.png",
+      "complex_003_table.csv",
+      "complex_003_chart.png"
+    ]
+  },
+  {
+    "id": "complex_004",
+    "category": "complex_docs",
+    "topic": "Sustainability Impact Report: Carbon Reduction Plan",
+    "word_count": 1227,
+    "formats": [
+      "text",
+      "image",
+      "csv",
+      "chart_png"
+    ],
+    "files": [
+      "complex_004.txt",
+      "complex_004.png",
+      "complex_004_table.csv",
+      "complex_004_chart.png"
+    ]
+  },
+  {
+    "id": "complex_005",
+    "category": "complex_docs",
+    "topic": "Whitepaper: Federated Learning for Healthcare",
+    "word_count": 2690,
+    "formats": [
+      "text",
+      "image",
+      "csv",
+      "chart_png"
+    ],
+    "files": [
+      "complex_005.txt",
+      "complex_005.png",
+      "complex_005_table.csv",
+      "complex_005_chart.png"
+    ]
+  }
+]
