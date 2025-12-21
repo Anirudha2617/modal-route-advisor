@@ -23,5 +23,33 @@ dist-ssr
 *.sln
 *.sw?
 
-
+# Environment
+.env
 .env/
+env/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Backend / Django
+backend/db.sqlite3
+backend/media/
+backend/static/
+*.sqlite3
+
+# Research & Datasets
+researchpaper/
+dataset/
+generated_enterprise_dataset/
+sec_downloads/
+experiment_documents/
+experiment_images/
+
+# Generated Results
+ai_detection_results.txt
+document_paragraphs.txt
+detection_indicators.txt
+.gitignore

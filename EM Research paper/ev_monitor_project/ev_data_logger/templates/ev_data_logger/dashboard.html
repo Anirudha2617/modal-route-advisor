@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Monitoring Dashboard</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+        header { background-color: #007bff; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+        header h1 { margin: 0; font-size: 2em; }
+        .data-section { background-color: white; margin-bottom: 25px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .data-section h2 { margin-top: 0; color: #0056b3; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .live-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .live-item { background-color: #e9f5ff; padding: 15px; border-radius: 6px; text-align: center; }
+        .live-item strong { display: block; font-size: 0.9em; color: #555; margin-bottom: 5px; }
+        .live-item span { font-size: 1.8em; font-weight: bold; color: #007bff; }
+        #live-indicator { font-size: 0.7em; vertical-align: middle; margin-left: 10px; }
+        #last-updated { font-size: 0.8em; color: #777; display: block; text-align: right; margin-top: 5px;}
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+        th { background-color: #007bff; color: white; font-weight: normal; }
+        tbody tr:nth-child(even) { background-color: #f9f9f9; }
+        /* chartsContainer and .chart-container styles can be removed if no other charts exist */
+        /* #chartsContainer { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; margin-top: 20px; } */
+        /* .chart-container { position: relative; height: 300px; } */
+        /* .chart-container canvas { background-color: #fff; border-radius: 6px; padding:10px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); } */
+        .button-container { margin-bottom: 20px; }
+        .button-container button { background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        .button-container button:hover { background-color: #218838; }
+        .error-message { color: red; font-weight: bold; padding: 10px; background-color: #ffebee; border: 1px solid #ef9a9a; border-radius: 4px; margin-bottom:15px; }
+    </style>
+    </head>
+<body>
+    <header>
+        <h1>EV Real-time Monitoring Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <div id="global-error-container"></div>
+        <div class="data-section live-data">
+            <h2>
+                Live Data
+                <span id="live-indicator" style="color: grey;">(Initializing...)</span>
+                <small id="last-updated"></small>
+            </h2>
+            <div class="live-grid">
+                <div class="live-item"><strong>Voltage (V)</strong> <span id="live-voltage">{{ latest_reading.voltage|floatformat:1|default:"---" }}</span></div>
+                <div class="live-item"><strong>Current (A)</strong> <span id="live-current">{{ latest_reading.current|floatformat:1|default:"---" }}</span></div>
+                <div class="live-item"><strong>Temperature (°C)</strong> <span id="live-temperature">{{ latest_reading.temperature|floatformat:1|default:"---" }}</span></div>
+            </div>
+        </div>
+
+        <div class="data-section">
+            <h2>Recent Readings Table</h2>
+             <div class="button-container">
+                <button id="fetch-table-data">Load Table Data</button>
+            </div>
+            <table id="historical-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Voltage (V)</th>
+                        <th>Current (A)</th>
+                        <th>Temperature (°C)</th>
+                    </tr>
+                </thead>
+                <tbody id="historical-table-body">
+                    {% if latest_reading %}
+                    <tr>
+                        <td>{{ latest_reading.timestamp|date:"Y-m-d H:i:s" }}</td>
+                        <td>{{ latest_reading.voltage|floatformat:1 }}</td>
+                        <td>{{ latest_reading.current|floatformat:1 }}</td>
+                        <td>{{ latest_reading.temperature|floatformat:1 }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="4">No data available yet. Click "Load Table Data".</td></tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<script>
+// Cache DOM elements
+const liveVoltageEl = document.getElementById('live-voltage');
+const liveCurrentEl = document.getElementById('live-current');
+const liveTemperatureEl = document.getElementById('live-temperature');
+const liveIndicator = document.getElementById('live-indicator');
+const lastUpdatedEl = document.getElementById('last-updated');
+const globalErrorContainer = document.getElementById('global-error-container');
+const historicalTableBody = document.getElementById('historical-table-body');
+// const refreshChartsButton = document.getElementById('refresh-charts-button'); // Button removed
+const fetchTableDataButton = document.getElementById('fetch-table-data');
+
+// let evCharts = {}; // Not needed if charts are removed
+// let chartInitializationFailed = false; // Not needed if charts are removed
+
+function displayGlobalError(message) {
+    if (globalErrorContainer) {
+        globalErrorContainer.innerHTML = `<div class="error-message">${message}</div>`;
+    }
+    console.error("GLOBAL ERROR DISPLAYED:", message);
+}
+
+
+
+async function fetchTableReadings() {
+    console.log("fetchTableReadings function called");
+    try {
+        // Assuming your API endpoint for chart data also serves well for table data
+        // If not, you might need a dedicated API endpoint for table data
+        const apiUrl = "{% url 'ev_data_logger:get_ev_chart_data_api' %}";
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Failed to fetch table data. Status:", response.status, "Response:", errorText);
+            historicalTableBody.innerHTML = `<tr><td colspan="4" class="error-message">Error loading data. Status: ${response.status}</td></tr>`;
+            return;
+        }
+        const apiData = await response.json();
+        if (!apiData || !apiData.labels || apiData.labels.length === 0) {
+            historicalTableBody.innerHTML = `<tr><td colspan="4">No recent data available for the table.</td></tr>`;
+            return;
+        }
+        historicalTableBody.innerHTML = ''; // Clear previous table data
+        for (let i = 0; i < apiData.labels.length; i++) {
+            const row = historicalTableBody.insertRow();
+            const today = new Date();
+            const timeParts = String(apiData.labels[i]).split(':');
+            let displayTimestamp = apiData.labels[i];
+            if (timeParts.length === 3) {
+                const [hours, minutes, seconds] = timeParts.map(num => parseInt(num, 10));
+                 if (!isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
+                    displayTimestamp = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hours, minutes, seconds).toLocaleString();
+                } else {
+                    displayTimestamp = apiData.labels[i] + " (invalid time)";
+                }
+            }
+            row.insertCell().textContent = displayTimestamp;
+            row.insertCell().textContent = apiData.voltage[i] !== undefined && apiData.voltage[i] !== null ? Number(apiData.voltage[i]).toFixed(1) : 'N/A';
+            row.insertCell().textContent = apiData.current[i] !== undefined && apiData.current[i] !== null ? Number(apiData.current[i]).toFixed(1) : 'N/A';
+            row.insertCell().textContent = apiData.temperature[i] !== undefined && apiData.temperature[i] !== null ? Number(apiData.temperature[i]).toFixed(1) : 'N/A';
+        }
+    } catch (error) {
+        console.error("Error in fetchTableReadings function:", error);
+        historicalTableBody.innerHTML = `<tr><td colspan="4" class="error-message">An error occurred while loading data. Check console.</td></tr>`;
+    }
+}
+
+function updateLiveDisplay(data) {
+    if (!data) return;
+    if(liveVoltageEl) liveVoltageEl.textContent = data.voltage !== undefined ? Number(data.voltage).toFixed(1) : '---';
+    if(liveCurrentEl) liveCurrentEl.textContent = data.current !== undefined ? Number(data.current).toFixed(1) : '---';
+    if(liveTemperatureEl) liveTemperatureEl.textContent = data.temperature !== undefined ? Number(data.temperature).toFixed(1) : '---';
+    
+    if(lastUpdatedEl && data.timestamp) {
+        lastUpdatedEl.textContent = `(Last: ${new Date(data.timestamp).toLocaleTimeString()})`;
+    } else if (lastUpdatedEl) {
+        lastUpdatedEl.textContent = `(Last: ${new Date().toLocaleTimeString()})`;
+    }
+}
+
+async function fetchLatestReadingForInitialLoad() {
+    try {
+        const response = await fetch("{% url 'ev_data_logger:get_latest_ev_reading_api' %}");
+        if (response.ok) {
+            const data = await response.json();
+            if (data && Object.keys(data).length > 0) updateLiveDisplay(data);
+        }
+    } catch (error) {
+        console.error("Error polling initial latest data:", error);
+    }
+}
+
+function connectWebSocket() {
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+    const socket = new WebSocket(`${wsProtocol}${window.location.host}/ws/ev_data/`);
+
+    socket.onopen = function(e) {
+        console.log("WebSocket connection established");
+        if(liveIndicator) {
+            liveIndicator.textContent = '(Live - WebSocket)';
+            liveIndicator.style.color = 'green';
+        }
+        fetchLatestReadingForInitialLoad();
+    };
+
+    socket.onmessage = function(event) {
+        try {
+            const message = JSON.parse(event.data);
+            if (message.type === 'ev_reading_update' && message.payload) {
+                updateLiveDisplay(message.payload);
+            }
+        } catch (e) {
+            console.error("Error parsing WebSocket message:", e);
+        }
+    };
+
+    socket.onclose = function(event) {
+        console.warn("WebSocket connection closed. Retrying in 5s. Code:", event.code);
+        if(liveIndicator) {
+            liveIndicator.textContent = '(WS Disconnected - Retrying...)';
+            liveIndicator.style.color = 'red';
+        }
+        setTimeout(connectWebSocket, 5000);
+    };
+
+    socket.onerror = function(error) {
+        console.error("WebSocket error:", error);
+         if(liveIndicator) {
+            liveIndicator.textContent = '(WebSocket Error)';
+            liveIndicator.style.color = 'red';
+        }
+    };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded and parsed");
+    if (fetchTableDataButton) {
+        fetchTableDataButton.addEventListener('click', fetchTableReadings);
+    }
+    
+    connectWebSocket();
+});
+
+</script>
+</body>
+</html>

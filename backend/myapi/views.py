@@ -35,6 +35,7 @@ def run_experiment_backend(request):
     print("Selected tasks:", selected_tasks)
     print("QA questions:", qa_questions)
 
+
     # Merge POST + FILES
     all_data = {
         "text": request.POST.get("text_content", ""),
@@ -43,6 +44,8 @@ def run_experiment_backend(request):
         "video": request.FILES.get("video_file"),
         "doc": request.FILES.get("document_file"),
     }
+    
+    ground_truth = request.POST.get("ground_truth", "")
 
     # Check if any content was provided
     if not any(all_data.values()):
@@ -76,7 +79,7 @@ def run_experiment_backend(request):
             for modality, input_data in all_data.items():
                 print(f"Checking modality: {modality}...")
                 if input_data and modality in model.supported_modalities:
-                    metrics = calculate_performance_metrics(new_experiment, model, input_data, modality, task_id )
+                    metrics = calculate_performance_metrics(new_experiment, model, input_data, modality, task_id, ground_truth)
                     Experimentresult = ExperimentResult.objects.create(
                         experiment=new_experiment,
                         model=model,

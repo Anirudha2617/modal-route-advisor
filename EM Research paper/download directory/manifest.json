@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "Find Downloads Directory",
+    "version": "1.0",
+    "description": "Get the path of the default downloads directory.",
+    "permissions": ["downloads"],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  

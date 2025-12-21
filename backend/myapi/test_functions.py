@@ -124,18 +124,91 @@ def calculate_cost(tokens_used, cost_per_token):
     return Decimal(tokens_used) * Decimal(cost_per_token)
 
 
+
+def normalize_text(text):
+    """Simple text normalization"""
+    if not text:
+        return ""
+    return "".join(c.lower() for c in text if c.isalnum() or c.isspace()).split()
+
+def calculate_f1_score(prediction, ground_truth):
+    """
+    Calculates F1 score based on word overlap.
+    """
+    pred_tokens = normalize_text(prediction)
+    truth_tokens = normalize_text(ground_truth)
+    
+    if not pred_tokens or not truth_tokens:
+        return 0.0
+        
+    common_tokens = set(pred_tokens) & set(truth_tokens)
+    num_same = len(common_tokens)
+    
+    if num_same == 0:
+        return 0.0
+        
+    precision = num_same / len(pred_tokens)
+    recall = num_same / len(truth_tokens)
+    
+    f1 = 2 * (precision * recall) / (precision + recall)
+    return round(f1 * 100, 2)
+
+def calculate_lcs(X, Y):
+    """Longest Common Subsequence helper"""
+    m = len(X)
+    n = len(Y)
+    L = [[0] * (n + 1) for _ in range(m + 1)]
+    for i in range(m + 1):
+        for j in range(n + 1):
+            if i == 0 or j == 0:
+                L[i][j] = 0
+            elif X[i-1] == Y[j-1]:
+                L[i][j] = L[i-1][j-1] + 1
+            else:
+                L[i][j] = max(L[i-1][j], L[i][j-1])
+    return L[m][n]
+
+def calculate_rouge_l_score(prediction, ground_truth):
+    """
+    Calculates ROUGE-L score (sentence level LCS).
+    """
+    pred_tokens = normalize_text(prediction)
+    truth_tokens = normalize_text(ground_truth)
+    
+    if not pred_tokens or not truth_tokens:
+        return 0.0
+
+    lcs_len = calculate_lcs(pred_tokens, truth_tokens)
+    
+    if lcs_len == 0:
+        return 0.0
+        
+    precision = lcs_len / len(pred_tokens)
+    recall = lcs_len / len(truth_tokens)
+    
+    if (precision + recall) == 0:
+        return 0.0
+        
+    f_measure = 2 * (precision * recall) / (precision + recall)
+    return round(f_measure * 100, 2)
+
+
 def calculate_accuracy(model_output, ground_truth, method="f1"):
     """
-    Placeholder accuracy (later plug in eval libs).
+    Calculates accuracy using F1-score or ROUGE-L.
     """
+    if not ground_truth:
+        return 0.0
+        
     if method == "f1":
-        return random.uniform(90.0, 95.0)
+        return calculate_f1_score(model_output, ground_truth)
     elif method == "rouge_l":
-        return random.uniform(80.0, 90.0)
-    return random.uniform(85.0, 99.0)
+        return calculate_rouge_l_score(model_output, ground_truth)
+    
+    return 0.0
 
 
-def calculate_performance_metrics(experiment, model_object, input_data, modality, task):
+def calculate_performance_metrics(experiment, model_object, input_data, modality, task, ground_truth=None):
     """
     Runs real API call, measures time, tokens, cost, saves ExperimentResult.
     """
@@ -143,7 +216,13 @@ def calculate_performance_metrics(experiment, model_object, input_data, modality
 
     # 1. Run model + measure time
     start = time.time()
-    model_output, usage = run_model_api(model_object, modality, task, input_data)
+    try:
+        model_output, usage = run_model_api(model_object, modality, task, input_data)
+    except Exception as e:
+        print(f"Error running model API: {e}")
+        model_output = f"Error: {str(e)}"
+        usage = {"total_tokens": 0}
+        
     end = time.time()
     time_taken = end - start
 
@@ -160,13 +239,11 @@ def calculate_performance_metrics(experiment, model_object, input_data, modality
     cost_per_token = getattr(model_object, cost_per_token_field, None)
     cost = calculate_cost(tokens_used, cost_per_token)
 
-    # 4. Accuracy (placeholder)
-    ground_truth = "Mock ground truth"
-    accuracy = (
-        calculate_accuracy(model_output, ground_truth, "f1")
-        if task == "qa"
-        else calculate_accuracy(model_output, ground_truth, "rouge_l")
-    )
+    # 4. Accuracy (Real)
+    # Determine method based on task (basic heuristic)
+    method = "rouge_l" if "summariz" in str(task).lower() else "f1"
+    
+    accuracy = calculate_accuracy(model_output, ground_truth, method)
 
     result = {
         "tokens_used": tokens_used,
@@ -174,7 +251,7 @@ def calculate_performance_metrics(experiment, model_object, input_data, modality
         "cost": cost,
         "accuracy": accuracy,
         "response_text": model_output,
-        "performance_score": (accuracy / (float(cost) + 0.01)) * (1 / (time_taken + 0.01)),
+        "performance_score": (accuracy / (float(cost) + 0.000001)) * (1 / (time_taken + 0.01)),
     }
 
     return result

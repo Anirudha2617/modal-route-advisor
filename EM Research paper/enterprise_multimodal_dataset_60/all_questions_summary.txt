@@ -1,0 +1,213 @@
+
+=== SHORT_DOCS ===
+
+
+short_001 — Quarterly Financial Analysis of Q2 2025
+
+
+short_002 — Market Entry Strategy: Southeast Asia
+
+
+short_003 — Whitepaper: Federated Learning for Healthcare
+
+
+short_004 — Operational Cost Optimization Report
+
+
+short_005 — Technical Note: Latency Reduction Techniques
+
+
+short_006 — Internal Audit Findings: IT Controls
+
+
+short_007 — Supply Chain Resilience Assessment
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+short_008 — Internal Audit Findings: IT Controls
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+short_009 — Market Entry Strategy: Southeast Asia
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+short_010 — Technical Feasibility Study: Edge AI Deployment
+
+
+short_011 — API Design Guidelines and Versioning Policy
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+short_012 — Product Requirements Document: Analytics Platform
+
+
+short_013 — Scalable Microservices Architecture for Payment Processing
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+short_014 — Research Abstract: Novel Battery Materials
+
+
+short_015 — Regulatory Compliance Overview: GDPR & CCPA
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+=== MEDIUM_DOCS ===
+
+
+medium_001 — Whitepaper: Federated Learning for Healthcare
+
+
+medium_002 — Regulatory Compliance Overview: GDPR & CCPA
+
+
+medium_003 — API Design Guidelines and Versioning Policy
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+medium_004 — Technical Feasibility Study: Edge AI Deployment
+
+
+medium_005 — Scalable Microservices Architecture for Payment Processing
+
+
+medium_006 — Technical Feasibility Study: Edge AI Deployment
+
+
+medium_007 — Whitepaper: Federated Learning for Healthcare
+
+
+medium_008 — Regulatory Compliance Overview: GDPR & CCPA
+
+
+medium_009 — Technical Feasibility Study: Edge AI Deployment
+
+
+medium_010 — Executive Summary: M&A Opportunity - AcmeCorp
+
+
+medium_011 — API Design Guidelines and Versioning Policy
+
+
+medium_012 — Security Incident Response Playbook
+
+
+medium_013 — Product Requirements Document: Analytics Platform
+
+
+medium_014 — Internal Audit Findings: IT Controls
+
+
+medium_015 — Security Incident Response Playbook
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+medium_016 — RFP Response: Cloud Migration Services
+
+
+medium_017 — Technical Note: Latency Reduction Techniques
+
+
+medium_018 — Scalable Microservices Architecture for Payment Processing
+
+
+medium_019 — Executive Summary: M&A Opportunity - AcmeCorp
+
+
+medium_020 — Security Incident Response Playbook
+
+
+medium_021 — Executive Summary: M&A Opportunity - AcmeCorp
+
+
+medium_022 — Supply Chain Resilience Assessment
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+medium_023 — Scalable Microservices Architecture for Payment Processing
+
+
+medium_024 — Technical Note: Latency Reduction Techniques
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+medium_025 — Executive Summary: M&A Opportunity - AcmeCorp
+
+
+=== LONG_DOCS ===
+
+
+long_001 — Technical Feasibility Study: Edge AI Deployment
+
+
+long_002 — Research Abstract: Novel Battery Materials
+
+
+long_003 — Sustainability Impact Report: Carbon Reduction Plan
+
+
+long_004 — Technical Note: Latency Reduction Techniques
+
+
+long_005 — Sustainability Impact Report: Carbon Reduction Plan
+
+
+long_006 — Research Abstract: Novel Battery Materials
+
+
+long_007 — Scalable Microservices Architecture for Payment Processing
+
+
+long_008 — Security Incident Response Playbook
+
+
+long_009 — Internal Audit Findings: IT Controls
+
+
+long_010 — Scalable Microservices Architecture for Payment Processing
+
+
+long_011 — Market Entry Strategy: Southeast Asia
+
+
+long_012 — Supply Chain Resilience Assessment
+
+
+long_013 — Product Requirements Document: Analytics Platform
+
+
+long_014 — Executive Summary: M&A Opportunity - AcmeCorp
+
+
+long_015 — Regulatory Compliance Overview: GDPR & CCPA
+
+
+=== COMPLEX_DOCS ===
+
+
+complex_001 — Market Entry Strategy: Southeast Asia
+
+
+complex_002 — Whitepaper: Federated Learning for Healthcare
+
+
+complex_003 — Regulatory Compliance Overview: GDPR & CCPA
+1. Describe the top three risks and propose mitigation strategies.
+2. Summarize the recommended rollout plan in 3 bullet points.
+3. Identify any assumptions that must be validated before scaling.
+
+complex_004 — Sustainability Impact Report: Carbon Reduction Plan
+
+
+complex_005 — Whitepaper: Federated Learning for Healthcare
